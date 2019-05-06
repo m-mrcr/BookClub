@@ -8,8 +8,8 @@ describe "user sees all books" do
 
       visit '/books'
 
-      expect(page).to have_content(book_1.title)
-      expect(page).to have_content(book_2.title)
+      expect(page).to have_link(book_1.title)
+      expect(page).to have_link(book_2.title)
       expect(page).to have_content(book_1.author)
       expect(page).to have_content(book_2.author)
       expect(page).to have_content(book_1.pages)
