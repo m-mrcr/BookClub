@@ -58,8 +58,6 @@ fellowship.authors << Author.find_or_create_by(name: 'J.R.R. Tolkien')
 towers.authors << Author.find_or_create_by(name: 'J.R.R. Tolkien')
 king.authors << Author.find_or_create_by(name: 'J.R.R. Tolkien')
 
-user.reviews.create(book_id) #TEMPLATE
-# Change user name into user variable
 user_2.reviews.create(astronaut)
 # astronaut.reviews.create(body: "I have so many good things to say about this book I don't think they'll all fit into one review (for my full review, including my four-year-old's reaction to it, please visit my blog, Cozy Little Book Journal).", headline: 'I have so many good things to say about this book', rating: 5).find_or_create_by(username: 'CozyLittleBookJournal')
 
