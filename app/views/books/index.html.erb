@@ -3,7 +3,7 @@
 <ul id="books">
   <% @books.each do |book| %>
     <li>
-      <%= book.title %>
+      <%= link_to book.title, book_path(book), class:'book-title', id:'book-#{book.id}' %>
       <%= book.author %>
       <%= book.pages %>
       <%= book.year %>
