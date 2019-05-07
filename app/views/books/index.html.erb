@@ -4,7 +4,6 @@
   <% @books.each do |book| %>
     <li>
       <%= link_to book.title, book_path(book), class:'book-title', id:'book-#{book.id}' %>
-      <%= book.author %>
       <%= book.pages %>
       <%= book.year %>
       <%= book.cover_url %>
