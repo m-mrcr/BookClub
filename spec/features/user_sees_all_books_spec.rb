@@ -10,6 +10,14 @@ describe "user sees all books" do
 
       expect(page).to have_content(book_1.title)
       expect(page).to have_content(book_2.title)
+      expect(page).to have_content(book_1.author)
+      expect(page).to have_content(book_2.author)
+      expect(page).to have_content(book_1.pages)
+      expect(page).to have_content(book_2.pages)
+      expect(page).to have_content(book_1.year)
+      expect(page).to have_content(book_2.year)
+      expect(page).to have_content(book_1.cover_url)
+      expect(page).to have_content(book_2.cover_url)
     end
   end
 end
