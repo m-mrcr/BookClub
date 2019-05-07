@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190507174058) do
+ActiveRecord::Schema.define(version: 20190507211752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,12 +30,23 @@ ActiveRecord::Schema.define(version: 20190507174058) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
-    t.string "author"
     t.integer "pages"
     t.integer "year"
     t.string "cover_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "headline"
+    t.text "body"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
   end
 
   add_foreign_key "author_books", "authors"
