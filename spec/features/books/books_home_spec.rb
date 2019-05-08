@@ -14,8 +14,8 @@ describe "user sees all books" do
       expect(page).to have_content(book_2.pages)
       expect(page).to have_content(book_1.year)
       expect(page).to have_content(book_2.year)
-      expect(page).to have_content(book_1.cover_url)
-      expect(page).to have_content(book_2.cover_url)
+      expect(page).to have_xpath("//img[contains(@src,'#{book_1.cover_url}')]")
+      expect(page).to have_xpath("//img[contains(@src,'#{book_2.cover_url}')]")
     end
   end
 end
