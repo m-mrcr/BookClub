@@ -43,7 +43,7 @@ describe "user sees all books" do
 
       click_link("New Book")
 
-      expect(current_path).to eq('books/new')
+      expect(current_path).to eq('/books/new')
 
     end
   end
