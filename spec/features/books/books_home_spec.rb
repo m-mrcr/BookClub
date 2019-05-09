@@ -4,7 +4,6 @@ describe "user sees all books" do
   describe "they visit /books" do
 
     it "gives error if no books" do
-      # require 'pry'; binding.pry
       visit books_path
 
       expect(page).to have_content("No books!")
@@ -19,14 +18,16 @@ describe "user sees all books" do
 
       visit books_path
 
-      expect(page).to have_link(book_1.title)
-      expect(page).to have_link(book_2.title)
-      expect(page).to have_content(book_1.pages)
-      expect(page).to have_content(book_2.pages)
-      expect(page).to have_content(book_1.year)
-      expect(page).to have_content(book_2.year)
-      expect(page).to have_xpath("//img[contains(@src,'#{book_1.cover_url}')]")
-      expect(page).to have_xpath("//img[contains(@src,'#{book_2.cover_url}')]")
+      expect(page).to have_link(astronaut.title)
+      expect(page).to have_link(css.title)
+      expect(page).to have_content(astronaut.pages)
+      expect(page).to have_content(css.pages)
+      expect(page).to have_content(astronaut.year)
+      expect(page).to have_content(css.year)
+      expect(page).to have_content(astronaut.year)
+      expect(page).to have_content(css.year)
+      expect(page).to have_xpath("//img[contains(@src,'#{astronaut.cover_url}')]")
+      expect(page).to have_xpath("//img[contains(@src,'#{css.cover_url}')]")
     end
   end
 end
