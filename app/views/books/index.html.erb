@@ -1,13 +1,22 @@
 <h1>All Books</h1>
 
+
+<a class="button" href="/books/new">New Book</a>
+
 <% if @books == [] %>
   <h2>No books!</h2>
 <% else %>
   <% @books.each do |book| %>
+    <p>Author(s)</p>
+    <% book.authors.each do |author| %>
+      <ul id="authors">
+        <li><%= author.name %></li>
+      </ul>
+    <% end %>
     <ul id="books">
-      <li><%= link_to book.title, book_path(book), class:'book-title', id:'book-#{book.id}' %></li>
-      <li><%= book.pages %></li>
-      <li><%= book.year %></li>
+      <li>Title: <%= link_to book.title, book_path(book), class:'book-title', id:'book-#{book.id}' %></li>
+      <li>Page Count: <%= book.pages %></li>
+      <li>Published: <%= book.year %></li>
       <li><img src=<%= book.cover_url %> alt=book.title></li>
     </ul>
   <% end %>
