@@ -2,9 +2,20 @@ require "rails_helper"
 
 describe "user sees all books" do
   describe "they visit /books" do
-    it "displays all books" do
-      book_1 = Book.create!(title: "Title 1", pages: 300, year: 1963, cover_url:"https://images-na.ssl-images-amazon.com/images/I/81HNeEElO8L.jpg")
-      book_2 = Book.create!(title: "Title 2", pages: 400, year: 1970, cover_url:"https://upload.wikimedia.org/wikipedia/en/thumb/6/63/Into_the_Wild_%28book%29_cover.png/220px-Into_the_Wild_%28book%29_cover.png")
+
+    it "gives error if no books" do
+      # require 'pry'; binding.pry
+      visit books_path
+
+      expect(page).to have_content("No books!")
+    end
+
+    it "displays all books if books" do
+      astronaut = Book.create(title: "An Astronaut's Guide to Life on Earth", pages: 284, year: 2013, cover_url: 'http://media.npr.org/assets/bakertaylor/covers/a/an-astronauts-guide-to-life-on-earth/9780316253017_custom-72b5b1e3d259fb604fee1401424db3c8cd04cfe0-s6-c30.jpg')
+      css = Book.create(title: 'CSSucks', pages: 420, year: 2019, cover_url: 'https://i1.wp.com/www.developermemes.com/wp-content/uploads/2014/01/CSS-Sucks-TShirt-Meme.jpg?resize=385%2C232')
+
+      astronaut.authors << Author.find_or_create_by(name: 'Chris Hadfield')
+      css.authors << Author.find_or_create_by(name: 'Matt Weiss')
 
       visit books_path
 
@@ -14,8 +25,8 @@ describe "user sees all books" do
       expect(page).to have_content(book_2.pages)
       expect(page).to have_content(book_1.year)
       expect(page).to have_content(book_2.year)
-      expect(page).to have_content(book_1.cover_url)
-      expect(page).to have_content(book_2.cover_url)
+      expect(page).to have_xpath("//img[contains(@src,'#{book_1.cover_url}')]")
+      expect(page).to have_xpath("//img[contains(@src,'#{book_2.cover_url}')]")
     end
   end
 end

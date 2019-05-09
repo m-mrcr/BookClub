@@ -1,5 +1,8 @@
 <h1><%= @book.title %></h1>
-<%= @book.pages %>
-<%= @book.year %>
-<%= @book.cover_url %>
+<ul>
+  <li><%= @book.pages %></li>
+  <li><%= @book.year %></li>
+<li><img src=<%= @book.cover_url %> alt=@book.title></li>
+</ul>
+
 <%= link_to "<< Back to Books List", books_path %>
