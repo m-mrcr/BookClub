@@ -7,24 +7,19 @@
   <h2>No books!</h2>
 <% else %>
   <% @books.each do |book| %>
-    <p>Author(s)</p>
-    <%require 'pry'; binding.pry%>
-    <%if book.authors.length == 1%>
-      <ul>
-        <li>book.authors[0].name</li>
-      </ul>
-    <% else %>
+    <section id="books">
+      <p>Title: <%= link_to book.title, book_path(book), class:'book-title', id:'book-#{book.id}' %></p>
+
+      <p>Author(s)</p>
       <% book.authors.each do |author| %>
-        <ul id="authors">
-          <li><%= author.name %></li>
-        </ul>
+      <section id="authors">
+        <p><%= author.name %></p>
+      </section>
       <% end %>
-    <% end %>
-    <ul id="books">
-      <li>Title: <%= link_to book.title, book_path(book), class:'book-title', id:'book-#{book.id}' %></li>
-      <li>Page Count: <%= book.pages %></li>
-      <li>Published: <%= book.year %></li>
-      <li><img src=<%= book.cover_url %> alt=book.title></li>
-    </ul>
+
+      <p>Page Count: <%= book.pages %></p>
+      <p>Published: <%= book.year %></p>
+      <p><img src=<%= book.cover_url %> alt=<%=book.title%>></p>
+    </section>
   <% end %>
 <% end %>
