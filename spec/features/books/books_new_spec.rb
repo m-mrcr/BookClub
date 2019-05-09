@@ -14,9 +14,6 @@ describe "user inputs new book" do
       island_cover_url = "https://en.wikipedia.org/wiki/File:Island.JPG"
       island_authors = "Aldus Huxley"
 
-      # island = Book.create(title: "Island", pages: 313, year: 2018, cover_url: 'http://media.npr.org/assets/bakertaylor/covers/a/an-astronauts-guide-to-life-on-earth/9780316253017_custom-72b5b1e3d259fb604fee1401424db3c8cd04cfe0-s6-c30.jpg')
-      # island.authors << Author.create(name: 'Aldus Huxley')
-
       fill_in "book[title]", with: island_title
       fill_in "book[year]", with: island_year
       fill_in "book[pages]", with: island_pages
