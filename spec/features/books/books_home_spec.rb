@@ -24,8 +24,8 @@ describe "user sees all books" do
       expect(page).to have_content(css.pages)
       expect(page).to have_content(astronaut.year)
       expect(page).to have_content(css.year)
-      expect(page).to have_content(astronaut.year)
-      expect(page).to have_content(css.year)
+      expect(page).to have_content(astronaut.authors[0].name)
+      expect(page).to have_content(css.authors[0].name)
       expect(page).to have_xpath("//img[contains(@src,'#{astronaut.cover_url}')]")
       expect(page).to have_xpath("//img[contains(@src,'#{css.cover_url}')]")
     end
