@@ -8,10 +8,17 @@
 <% else %>
   <% @books.each do |book| %>
     <p>Author(s)</p>
-    <% book.authors.each do |author| %>
-      <ul id="authors">
-        <li><%= author.name %></li>
+    <%require 'pry'; binding.pry%>
+    <%if book.authors.length == 1%>
+      <ul>
+        <li>book.authors[0].name</li>
       </ul>
+    <% else %>
+      <% book.authors.each do |author| %>
+        <ul id="authors">
+          <li><%= author.name %></li>
+        </ul>
+      <% end %>
     <% end %>
     <ul id="books">
       <li>Title: <%= link_to book.title, book_path(book), class:'book-title', id:'book-#{book.id}' %></li>
