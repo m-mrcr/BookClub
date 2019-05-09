@@ -1,8 +1,21 @@
 <h1><%= @book.title %></h1>
 <ul>
+
+  <% @book.authors.each do |author| %>
+    <p><%= author.name %>
+  <% end %>
   <li><%= @book.pages %></li>
   <li><%= @book.year %></li>
-<li><img src=<%= @book.cover_url %> alt=@book.title></li>
+  <p><img src= <%= @book.cover_url %> alt=<%= @book.title%> ></p>
+
+  <% @book.reviews.each do |review| %>
+    <p><%= review.headline %>
+    <p><%= review.user.username %>
+    <p><%= review.rating %>
+    <p><%= review.body %>
+  <% end %>
+
+
 </ul>
 
 <%= link_to "<< Back to Books List", books_path %>
