@@ -1,5 +1,8 @@
 <h1>All Books</h1>
 
+<% if @books == [] %>
+  <h2>No books!</h2>
+<% else %>
   <% @books.each do |book| %>
     <ul id="books">
       <li><%= link_to book.title, book_path(book), class:'book-title', id:'book-#{book.id}' %></li>
@@ -8,3 +11,4 @@
       <li><img src=<%= book.cover_url %> alt=book.title></li>
     </ul>
   <% end %>
+<% end %>
