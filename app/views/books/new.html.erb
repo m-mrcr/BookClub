@@ -1,0 +1,32 @@
+<html>
+<h1>Enter New Book</h1>
+
+<section class="inputs"
+  <h1>Enter a new title:</h1>
+  <%= form_for(@book) do |f| %>
+    <p>
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </p>
+    <p>
+      <%= f.label :year %><br />
+      <%= f.text_area :year %>
+    </p>
+    <p>
+      <%= f.label :pages %><br />
+      <%= f.text_area :pages %>
+    </p>
+    <p>
+      <%= f.label :cover_url %><br />
+      <%= f.text_area :cover_url %>
+    </p>
+    <p>
+      <%= f.label :authors %><br />
+      <%= f.text_area :authors %>
+    </p>
+    <p>
+      <%= f.submit("Submit Book") %>
+    </p>
+  <% end %>
+</section>
+</html>
