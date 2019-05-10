@@ -1,6 +1,9 @@
 <h1>All Books</h1>
 
-
+<h3>Three of the best!</h3>
+<% @three_best.each do |book| %>
+  <%= book.title %>
+<% end %>
 <a class="button" href="/books/new">New Book</a>
 
 <% if @books == [] %>
