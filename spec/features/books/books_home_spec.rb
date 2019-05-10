@@ -128,10 +128,13 @@ describe "user sees all books" do
         user_17.reviews.create(book: narnia, body: "Your Proctologist Gets Choked Up About", headline: "Terrifying Things", rating: 7)
 
         visit books_path
+        within '#best-books' do
+          expect(page).to have_content("The Chronicles of Narnia")      #Book titles and average rating
+          expect(page).to have_content("Pride And Prejudice")      #Book titles and average rating
+          expect(page).to have_content("An Astronaut's Guide to Life on Earth")      #Book titles and average rating
 
-        expect(page).to have_content("The Chronicles of Narnia")      #Book titles and average rating
-        expect(page).to have_content("Pride And Prejudice")      #Book titles and average rating
-        expect(page).to have_content("An Astronaut's Guide to Life on Earth")      #Book titles and average rating
+          expect(page).to_not have_content("The Hunger Games")
+        end
       end
 
       it "displays three worst-rated books (book title)" do
@@ -216,9 +219,13 @@ describe "user sees all books" do
 
         visit books_path
 
-        expect(page).to have_content("CSSucks")      #Book titles and average rating
-        expect(page).to have_content("To Kill a Mockingbird")      #Book titles and average rating
-        expect(page).to have_content("Harry Potter and the Order of the Phoenix")      #Book titles and average rating
+        within '#worst-books' do
+          expect(page).to have_content("CSSucks")      #Book titles and average rating
+          expect(page).to have_content("To Kill a Mockingbird")      #Book titles and average rating
+          expect(page).to have_content("Harry Potter and the Order of the Phoenix")      #Book titles and average rating
+
+          expect(page).to_not have_content("The Hunger Games")
+        end
       end
 
 
