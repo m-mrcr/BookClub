@@ -3,6 +3,7 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
     @three_best = Book.three_best_books
+    @three_worst = Book.three_worst_books
   end
 
   def show
