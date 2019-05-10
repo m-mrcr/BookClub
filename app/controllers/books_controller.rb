@@ -5,9 +5,6 @@ class BooksController < ApplicationController
     @three_best = Book.three_best_books
     @three_worst = Book.three_worst_books
     @three_top_users = User.most_prolific
-
-
-
   end
 
   def show
