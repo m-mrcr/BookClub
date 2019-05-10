@@ -2,11 +2,11 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
+    @three_best = Book.three_best_books
   end
 
   def show
     @book = Book.find(params[:id])
-    # @book[:cover_url] = "https://unmpress.com/sites/default/files/default_images/no_image_book.jpg" ? cover_url.empty? : cover_url
   end
 
   def new
