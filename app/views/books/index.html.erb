@@ -1,19 +1,27 @@
 <h1>All Books</h1>
 
-<h3>The Best of the Best!</h3>
-<% @three_best.each do |book| %>
-  <%= book.title %>
-  <%= book.average_rating.to_f.round(2) %>
-  </br >
-<% end %>
+<section id="best-books">
+  <h2>The Best of the Best!</h2>
+  <br>
+  <% @three_best.each do |book| %>
+    <%= book.title %>
+    <%= book.average_rating.to_f.round(2) %>
+    <br>
+  <% end %>
+</section>
+<br>
 
-<h3>The Worst of the Worst!</h3>
-<% @three_worst.each do |book| %>
-  <%= book.title %>
-  <%= book.average_rating.to_f.round(2) %>
-  </br >
-<% end %>
+<section id="worst-books">
+  <h2>The Worst of the Worst!</h2>
+  <br>
+  <% @three_worst.each do |book| %>
+    <%= book.title %>
+    <%= book.average_rating.to_f.round(2) %>
+    <br >
+  <% end %>
+</section>
 
+<br>
 <a class="button" href="/books/new">New Book</a>
 
 <% if @books == [] %>
