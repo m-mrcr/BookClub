@@ -7,4 +7,13 @@ class Book < ApplicationRecord
   def self.titles
     self.select(:title).pluck(:title)
   end
+
+  def self.three_best_books
+    joins(:reviews).group(:id).order("avg(reviews.rating) DESC").limit(3)
+  end
+
+  def self.three_worst_books
+    joins(:reviews).group(:id).order("avg(reviews.rating)").limit(3)
+  end
+
 end
