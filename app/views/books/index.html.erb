@@ -1,9 +1,19 @@
 <h1>All Books</h1>
 
-<h3>Three of the best!</h3>
+<h3>The Best of the Best!</h3>
 <% @three_best.each do |book| %>
   <%= book.title %>
+  <%= book.average_rating.to_f.round(2) %>
+  </br >
 <% end %>
+
+<h3>The Worst of the Worst!</h3>
+<% @three_worst.each do |book| %>
+  <%= book.title %>
+  <%= book.average_rating.to_f.round(2) %>
+  </br >
+<% end %>
+
 <a class="button" href="/books/new">New Book</a>
 
 <% if @books == [] %>
