@@ -2,16 +2,14 @@ class User < ApplicationRecord
   has_many :reviews
   validates_presence_of :username
 
-  def user_review_count
-
+  def review_count
+    reviews.count
   end
 
-  def users_by_review_count
-
+  def by_review_count
+    user.joins(:reviews).select("COUNT(reviews.id)")
+    count(:reviews)
   end
 
-  def self.most_prolific_users
-    
-  end
 
 end
