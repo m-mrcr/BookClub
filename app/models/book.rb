@@ -16,4 +16,16 @@ class Book < ApplicationRecord
     joins(:reviews).group(:id).order("avg(reviews.rating)").limit(3)
   end
 
+  def average_rating
+    reviews.average(:rating)
+  end
+
 end
+
+# select("books.title, AVG(reviews.rating) AS avg_rating").joins(:reviews).group(:title).order("avg_rating DESC")
+
+# SELECT books.title, AVG(reviews.rating) AS avg_rating
+# FROM books INNER JOIN reviews
+# ON reviews.book_id = books.id
+# GROUP BY books.title
+# ORDER By avg_rating DESC;
