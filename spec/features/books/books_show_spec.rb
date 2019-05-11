@@ -96,5 +96,16 @@ describe "user sees one book" do
         expect(page).to have_content(0)
       end
     end
+
+    it "displays author name as link" do
+      astronaut = Book.create(title: "An Astronaut's Guide to Life on Earth", pages: 284, year: 2013, cover_url: 'http://media.npr.org/assets/bakertaylor/covers/a/an-astronauts-guide-to-life-on-earth/9780316253017_custom-72b5b1e3d259fb604fee1401424db3c8cd04cfe0-s6-c30.jpg')
+      astronaut.authors << Author.find_or_create_by(name: 'Chris Hadfield')
+
+      visit books_path
+
+      click_link(astronaut.title)
+
+      expect(page).to have_link(astronaut.authors[0].name)
+    end
   end
 end
