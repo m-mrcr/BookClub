@@ -46,32 +46,22 @@ describe "user sees one book" do
       user_3 = User.create(username: "Burlington Anglerfish")
       user_4 = User.create(username: "Birdbox Bandersnatch")
 
-      user_1.reviews.create(book: astronaut, body: "I have so many good things to say about this book I don't think they'll all fit into one review (for my full review, including my four-year-old's reaction to it, please visit my blog, Cozy Little Book Journal).", headline: 'I have so many good things to say about this book', rating: 1)
-      user_2.reviews.create(book: astronaut, body: "This is an interesting treatise on food theory and utopian food consumption", headline: "Hungry hungry killers", rating: 2)
+      user_1.reviews.create(book: astronaut, body: "I have so many good things to say about this book I don't think they'll all fit into one review (for my full review, including my four-year-old's reaction to it, please visit my blog, Cozy Little Book Journal).", headline: 'I have so many good things to say about this book', rating: 2)
+      user_2.reviews.create(book: astronaut, body: "This is an interesting treatise on food theory and utopian food consumption", headline: "Hungry hungry killers", rating: 1)
       user_3.reviews.create(book: astronaut, body: "Agriculture Secretary Thomas J. Vilsack", headline: "Photoshop Tips From", rating: 4)
       user_4.reviews.create(book: astronaut, body: "Make Psychologists Feel Ashamed", headline: "Shocking Things That", rating: 3)
 
       visit books_path
 
       click_link astronaut.title
-# require 'pry'; binding.pry
-      expect(current_path).to eq(book_path(astronaut.id))
 
-      # expect(page).to have_content(astronaut.title)
-      # expect(page).to have_content(astronaut.authors[0].name)
-      # expect(page).to have_content(astronaut.pages)
-      # expect(page).to have_content(astronaut.year)
-      #
-      # expect(page).to have_xpath("//img[contains(@src,'#{astronaut.cover_url}')]")
-      # expect(page).to have_content("Snorkeldink Crumplehorn")
-      # expect(page).to have_content("I have so many good things")
-      #
-      # expect(page).to_not have_content(hunger.title)
-      # expect(page).to_not have_content(hunger.pages)
-      # expect(page).to_not have_content(hunger.year)
-      # expect(page).to_not have_xpath("//img[contains(@src,'#{hunger.cover_url}')]")
-      # expect(page).to_not have_content("Fiddlestick Calldispatch")
-      # expect(page).to_not have_content("This is an interesting treatise")
+      expect(page).to have_content(user_1.reviews.first.headline)
+      expect(page).to have_content(user_1.reviews.first.body)
+      expect(page).to have_content(user_1.reviews.first.rating)
+      expect(page).to have_content(user_2.reviews.first.headline)
+      expect(page).to have_content(user_4.reviews.first.headline)
+
+      expect(page).to_not have_content(user_3.reviews.first.headline)
     end
   end
 end
