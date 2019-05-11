@@ -33,7 +33,7 @@ describe "user inputs new review" do
       expect(current_path).to eq(new_book_review_path(astronaut.id))
 
       review_headline = "Some Bubkus Review"
-      review_username = "LittleKitty9000"
+      review_username = "littleKitty9000"
       review_rating = 4
       review_body = "I know nothing about this book, I've never read it."
 
@@ -47,6 +47,8 @@ describe "user inputs new review" do
       expect(current_path).to eq("/books/#{astronaut.id}")
       expect(page).to_not have_content("CSSucks")
       expect(current_path).to_not eq("/books/#{css.id}")
+
+      expect(page).to have_content("Littlekitty9000")
     end
 
   end
