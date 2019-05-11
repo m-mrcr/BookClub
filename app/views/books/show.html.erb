@@ -1,7 +1,7 @@
 <h1><%= @book.title %></h1>
 <br>
-<h3>Three Best Reviews</h3>
 
+<h3>Three Best Reviews</h3>
 <section id='top-three-reviews'>
 <% @three_best_reviews.each do |review| %>
   <%= review.headline %><br>
@@ -14,6 +14,7 @@
 </section>
 
 <br>
+<h3>Three Worst Reviews</h3>
 <section id='bottom-three-reviews'>
 <% @three_worst_reviews.each do |review| %>
   <%= review.headline %><br>
@@ -22,6 +23,13 @@
   <br>
   <br>
 <% end %>
+<br>
+</section>
+
+<br>
+<br>
+<section id='average-rating'>
+<h2>Average Rating: <%= @overall_average.round(2) %></h2>
 <br>
 </section>
 
