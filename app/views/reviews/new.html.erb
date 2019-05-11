@@ -1,0 +1,27 @@
+<html>
+<h1>Enter New Review</h1>
+<section class="inputs"
+  <h1>Enter a new title:</h1>
+  <%= form_for [@book, @review] do |f| %>
+    <p>
+      <%= f.label :headline %><br />
+      <%= f.text_field :headline %>
+    </p>
+    <p>
+      <%= label_tag :username %><br />
+      <%= text_area_tag :username %>
+    </p>
+    <p>
+      <%= f.label :rating %><br />
+      <%= f.text_area :rating %>
+    </p>
+    <p>
+      <%= f.label :body %><br />
+      <%= f.text_area :body, value: "" %>
+    </p>
+    <p>
+      <%= f.submit("Submit Review") %>
+    </p>
+  <% end %>
+</section>
+</html>

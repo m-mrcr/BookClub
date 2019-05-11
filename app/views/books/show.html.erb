@@ -1,6 +1,7 @@
 <h1><%= @book.title %></h1>
 <br>
-<a class="button" href="/reviews/new">Write Review</a>
+
+<a class="button" href=<%= new_book_review_path(@book.id) %>>Write Review</a>
 
 <h3>Three Best Reviews</h3>
 <section id='top-three-reviews'>

@@ -14,4 +14,8 @@ class User < ApplicationRecord
       .limit(3)
   end
 
+  def self.usernames
+    pluck(:username)
+  end
+
 end

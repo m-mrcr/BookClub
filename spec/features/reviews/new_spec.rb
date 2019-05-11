@@ -21,20 +21,24 @@ describe "user inputs new review" do
       css = Book.create(title: 'CSSucks', pages: 420, year: 2019, cover_url: 'https://i1.wp.com/www.developermemes.com/wp-content/uploads/2014/01/CSS-Sucks-TShirt-Meme.jpg?resize=385%2C232')
       css.authors << Author.find_or_create_by(name: 'Matt Weiss')
 
+      user_1 = User.create(username: "Flipper")
+      user_1.reviews.create(book: astronaut, body: "I don't think they'll all fit into one review (for my full review, including my four-year-old's reaction to it", headline: 'I have so many good things to say about this book', rating: 5)
+
+
       visit books_path
 
       click_link(astronaut.title)
       click_link("Write Review")
 
-      expect(current_path).to eq(new_review_path)
+      expect(current_path).to eq(new_book_review_path(astronaut.id))
 
       review_headline = "Some Bubkus Review"
-      review_username = "LittleKitty9000"
+      review_username = "littleKitty9000"
       review_rating = 4
       review_body = "I know nothing about this book, I've never read it."
 
       fill_in "review[headline]", with: review_headline
-      fill_in "review[username]", with: review_username
+      fill_in "username", with: review_username
       fill_in "review[rating]", with: review_rating
       fill_in "review[body]", with: review_body
       click_on "Submit Review"
@@ -43,6 +47,8 @@ describe "user inputs new review" do
       expect(current_path).to eq("/books/#{astronaut.id}")
       expect(page).to_not have_content("CSSucks")
       expect(current_path).to_not eq("/books/#{css.id}")
+
+      expect(page).to have_content("Littlekitty9000")
     end
 
   end
