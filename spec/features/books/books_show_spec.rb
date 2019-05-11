@@ -56,7 +56,7 @@ describe "user sees one book" do
 
       within '#top-three-reviews' do
         expect(page).to have_content(user_3.reviews.first.headline)
-        expect(page).to have_content(user_3.reviews.first.body)
+        expect(page).to have_link(user_3.reviews.first.user.username)
         expect(page).to have_content(user_3.reviews.first.rating)
         expect(page).to have_content(user_4.reviews.first.headline)
         expect(page).to have_content(user_1.reviews.first.headline)
@@ -66,7 +66,7 @@ describe "user sees one book" do
 
       within '#bottom-three-reviews' do
         expect(page).to have_content(user_2.reviews.first.headline)
-        expect(page).to have_content(user_2.reviews.first.body)
+        expect(page).to have_link(user_2.reviews.first.user.username)
         expect(page).to have_content(user_2.reviews.first.rating)
         expect(page).to have_content(user_1.reviews.first.headline)
         expect(page).to have_content(user_4.reviews.first.headline)
