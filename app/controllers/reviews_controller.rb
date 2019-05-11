@@ -8,12 +8,11 @@ class ReviewsController < ApplicationController
   def create
     @book = Book.find(params[:book_id])
     review = Review.new(review_params)
-    username = user_params[:username].titleize
+    username = user_params[:username].downcase.strip.titleize
     if User.usernames.include?(username) || !params[:review][:rating].to_i.between?(1,5)
       redirect_to new_book_review_path
     else
-      formatted_username = username.downcase.strip.titleize
-      review_user = User.find_or_create_by!(username: formatted_username)
+      review_user = User.find_or_create_by!(username: username)
       review_user.reviews << review
       @book.reviews << review
       review.save
