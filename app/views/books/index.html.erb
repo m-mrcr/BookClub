@@ -41,7 +41,7 @@
       <p>Author(s)</p>
       <% book.authors.each do |author| %>
       <section id="authors">
-        <p><%= author.name %></p>
+        <p>Author: <%= link_to author.name, author_path(author), class:'book-author', id:'author-#{author.id}' %></p>
       </section>
       <% end %>
 
