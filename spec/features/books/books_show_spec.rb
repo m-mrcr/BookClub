@@ -46,22 +46,36 @@ describe "user sees one book" do
       user_3 = User.create(username: "Burlington Anglerfish")
       user_4 = User.create(username: "Birdbox Bandersnatch")
 
-      user_1.reviews.create(book: astronaut, body: "I have so many good things to say about this book I don't think they'll all fit into one review (for my full review, including my four-year-old's reaction to it, please visit my blog, Cozy Little Book Journal).", headline: 'I have so many good things to say about this book', rating: 2)
-      user_2.reviews.create(book: astronaut, body: "This is an interesting treatise on food theory and utopian food consumption", headline: "Hungry hungry killers", rating: 1)
-      user_3.reviews.create(book: astronaut, body: "Agriculture Secretary Thomas J. Vilsack", headline: "Photoshop Tips From", rating: 4)
-      user_4.reviews.create(book: astronaut, body: "Make Psychologists Feel Ashamed", headline: "Shocking Things That", rating: 3)
+      user_1.reviews.create(book: astronaut, body: "body 1", headline: 'headline 1', rating: 2)
+      user_2.reviews.create(book: astronaut, body: "body 2", headline: "headline 2", rating: 1)
+      user_3.reviews.create(book: astronaut, body: "body 3", headline: "headline 3", rating: 4)
+      user_4.reviews.create(book: astronaut, body: "body 4", headline: "headline 4", rating: 3)
 
       visit books_path
-
       click_link astronaut.title
 
-      expect(page).to have_content(user_1.reviews.first.headline)
-      expect(page).to have_content(user_1.reviews.first.body)
-      expect(page).to have_content(user_1.reviews.first.rating)
-      expect(page).to have_content(user_2.reviews.first.headline)
-      expect(page).to have_content(user_4.reviews.first.headline)
+      within '#top-three-reviews' do
+        expect(page).to have_content(user_3.reviews.first.headline)
+        expect(page).to have_content(user_3.reviews.first.body)
+        expect(page).to have_content(user_3.reviews.first.rating)
+        expect(page).to have_content(user_4.reviews.first.headline)
+        expect(page).to have_content(user_1.reviews.first.headline)
 
-      expect(page).to_not have_content(user_3.reviews.first.headline)
+        expect(page).to_not have_content(user_2.reviews.first.headline)
+      end
+      
+      within '#bottom-three-reviews' do
+        expect(page).to have_content(user_2.reviews.first.headline)
+        expect(page).to have_content(user_2.reviews.first.body)
+        expect(page).to have_content(user_2.reviews.first.rating)
+        expect(page).to have_content(user_1.reviews.first.headline)
+        expect(page).to have_content(user_4.reviews.first.headline)
+
+        expect(page).to_not have_content(user_3.reviews.first.headline)
+      end
+
+
+
     end
   end
 end
