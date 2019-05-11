@@ -1,6 +1,33 @@
 <h1><%= @book.title %></h1>
-<ul>
+<br>
+<h3>Three Best Reviews</h3>
 
+<section id='top-three-reviews'>
+<% @three_best_reviews.each do |review| %>
+  <%= review.headline %><br>
+  <%= review.body %><br>
+  <%= review.rating %>
+  <br>
+  <br>
+<% end %>
+<br>
+</section>
+
+<br>
+<section id='bottom-three-reviews'>
+<% @three_worst_reviews.each do |review| %>
+  <%= review.headline %><br>
+  <%= review.body %><br>
+  <%= review.rating %>
+  <br>
+  <br>
+<% end %>
+<br>
+</section>
+
+
+
+<ul>
   <% @book.authors.each do |author| %>
     <p><%= author.name %>
   <% end %>
