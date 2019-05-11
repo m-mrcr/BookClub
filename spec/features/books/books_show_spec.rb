@@ -63,7 +63,7 @@ describe "user sees one book" do
 
         expect(page).to_not have_content(user_2.reviews.first.headline)
       end
-      
+
       within '#bottom-three-reviews' do
         expect(page).to have_content(user_2.reviews.first.headline)
         expect(page).to have_content(user_2.reviews.first.body)
@@ -74,8 +74,27 @@ describe "user sees one book" do
         expect(page).to_not have_content(user_3.reviews.first.headline)
       end
 
+      within '#average-rating' do
+        expect(page).to have_content((1 + 2 + 3 + 4)/4.0)
+      end
+    end
 
+    it "displays 0 when there are no reviews (edge case)" do
+      astronaut = Book.create(title: "An Astronaut's Guide to Life on Earth", pages: 284, year: 2013, cover_url: 'http://media.npr.org/assets/bakertaylor/covers/a/an-astronauts-guide-to-life-on-earth/9780316253017_custom-72b5b1e3d259fb604fee1401424db3c8cd04cfe0-s6-c30.jpg')
 
+      astronaut.authors << Author.find_or_create_by(name: 'Chris Hadfield')
+
+      user_1 = User.create(username: "Snorkeldink Crumplehorn")
+      user_2 = User.create(username: "Fiddlestick Calldispatch")
+      user_3 = User.create(username: "Burlington Anglerfish")
+      user_4 = User.create(username: "Birdbox Bandersnatch")
+
+      visit books_path
+      click_link astronaut.title
+
+      within '#average-rating' do
+        expect(page).to have_content(0)
+      end
     end
   end
 end
