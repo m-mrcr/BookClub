@@ -37,7 +37,7 @@
 
 <ul>
   <% @book.authors.each do |author| %>
-    <p><%= author.name %>
+  <p>Author: <%= link_to author.name, author_path(author), class:'book-author', id:'author-#{author.id}' %></p>
   <% end %>
   <li><%= @book.pages %></li>
   <li><%= @book.year %></li>
