@@ -6,51 +6,46 @@
 <h3>Three Best Reviews</h3>
 <section id='top-three-reviews'>
 <% @three_best_reviews.each do |review| %>
-  <%= review.headline %><br>
-  <%= review.body %><br>
-  <%= review.rating %>
-  <br>
+  <p>Title: <%= review.headline %></p>
+  <p>Username: <%= link_to review.user.username, user_path(review.user), class:'review-user', id:'user-#{review.user.id}' %></p>
+  <p>Rating: <%= review.rating %></p>
   <br>
 <% end %>
-<br>
 </section>
 
 <br>
 <h3>Three Worst Reviews</h3>
 <section id='bottom-three-reviews'>
 <% @three_worst_reviews.each do |review| %>
-  <%= review.headline %><br>
-  <%= review.body %><br>
-  <%= review.rating %>
-  <br>
+  <p>Title: <%= review.headline %></p>
+  <p>Username: <%= link_to review.user.username, user_path(review.user), class:'review-user', id:'user-#{review.user.id}' %></p>
+  <p>Rating: <%= review.rating %></p>
   <br>
 <% end %>
-<br>
 </section>
 
-<br>
 <br>
 <section id='average-rating'>
 <h2>Average Rating: <%= @overall_average.round(2) %></h2>
 <br>
 </section>
 
-
-
 <ul>
   <% @book.authors.each do |author| %>
   <p>Author: <%= link_to author.name, author_path(author), class:'book-author', id:'author-#{author.id}' %></p>
   <% end %>
-  <li><%= @book.pages %></li>
-  <li><%= @book.year %></li>
+  <li>Pages: <%= @book.pages %></li>
+  <li>Year Published: <%= @book.year %></li>
   <p><img src= <%= @book.cover_url %> alt=<%= @book.title%> ></p>
 
+<section id='standard-reviews'>
   <% @book.reviews.each do |review| %>
     <p><%= review.headline %>
-    <p><%= review.user.username %>
+    <p><%= link_to review.user.username, user_path(review.user), class:'review-user', id:'user-#{review.user.id}' %></p>
     <p><%= review.rating %>
     <p><%= review.body %>
   <% end %>
+</section>
 
 
 </ul>
