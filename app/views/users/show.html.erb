@@ -1,19 +1,22 @@
 <h1><%= @user.username %></h1>
 <br>
-
-
-<h3>Reviews</h3>
+<h2>Reviews</h2>
 <section id='user-info'>
 <% @user.reviews.each do |review| %>
-
-<p><%= review.headline %></p>
-<p><%= review.body %></p>
-<p><%= review.rating %></p>
-<p><%= review.book.title %></p>
-<p><img class="small-image" src=<%= review.book.cover_url %> alt=<%=review.book.title%>></p>
-<p><%= review.book.created_at %></p>
-
+<hr>
+<br>
+<img class="small-image" src=<%= review.book.cover_url %> alt=<%=review.book.title%>>
+  <section id='review-<%= review.id %>'
+  <ul>
+    <li>Book Title: <%= review.book.title %></li>
+    <li>Headline: <%= review.headline %></li>
+    <li>Body: <%= review.body %></li>
+    <li>Rating: <%= review.rating %></li>
+    <li>Date Created:<%= review.book.created_at %></li>
+  </ul>
+  <%= link_to 'Delete Review', book_review_path(review.book.id, review, user_id: @user.id), method: :delete %>
+</section>
+  <br >
 <% end %>
-
 <br>
 </section>
