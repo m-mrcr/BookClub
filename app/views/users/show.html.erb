@@ -1,19 +1,26 @@
 <h1><%= @user.username %></h1>
 <br>
-
+<%= link_to "Oldest to Newest", controller: "users", action: "show", sort: "ascend"%>
+<br >
+<%= link_to "Newest to Oldest", controller: "users", action: "show", sort: "descend"%>
 
 <h3>Reviews</h3>
 <section id='user-info'>
-<% @user.reviews.each do |review| %>
 
-<p><%= review.headline %></p>
-<p><%= review.body %></p>
-<p><%= review.rating %></p>
-<p><%= review.book.title %></p>
-<p><img class="small-image" src=<%= review.book.cover_url %> alt=<%=review.book.title%>></p>
-<p><%= review.book.created_at %></p>
+<ul id='all-reviews'>
+<% @reviews.each do |review| %>
+
+  <li>
+    <p><%= review.headline %></p>
+    <p><%= review.body %></p>
+    <p><%= review.rating %></p>
+    <p><%= review.book.title %></p>
+    <p><img class="small-image" src=<%= review.book.cover_url %> alt=<%=review.book.title%>></p>
+    <p><%= review.book.created_at %></p>
+  </li>
 
 <% end %>
+</ul>
 
 <br>
 </section>

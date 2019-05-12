@@ -7,4 +7,5 @@ class Review < ApplicationRecord
     user.name
   end
 
+
 end
