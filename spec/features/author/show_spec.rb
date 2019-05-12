@@ -37,5 +37,21 @@ describe "user sees one author" do
         expect(page).to_not have_link(astronaut.authors[0].name)
       end
     end
+
+    it "displays top review and review info for each book" do
+      astronaut = Book.create(title: "An Astronaut's Guide to Life on Earth", pages: 284, year: 2013, cover_url: 'http://media.npr.org/assets/bakertaylor/covers/a/an-astronauts-guide-to-life-on-earth/9780316253017_custom-72b5b1e3d259fb604fee1401424db3c8cd04cfe0-s6-c30.jpg')
+      astronaut.authors << Author.find_or_create_by(name: 'Chris Hadfield')
+      user_1 = User.create(username: "Flipper")
+      user_2 = User.create(username: "Fopper")
+      user_1.reviews.create(book: astronaut, body: "including my", headline: "Wow", rating: 5)
+      user_2.reviews.create(book: astronaut, body: "reaction to it", headline: "Yikes", rating: 4)
+
+      visit books_path
+
+      click_link(astronaut.authors[0].name)
+
+      expect(page).to have_content(astronaut.reviews[0].headline)
+      expect(page).to_not have_content(astronaut.reviews[1].headline)
+    end
   end
 end

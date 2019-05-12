@@ -1,14 +1,20 @@
 <h1><%= @author.name %></h1>
 <h2>Books</h2>
+
 <% @books.each do |book| %>
-<h3><%= book.title %></h3>
-<section id="alternate-authors">
-<p>Other Authors:
-<% @alternate_authors.map do |author|%>
-<%= link_to author.name, author_path(author), class:'book-author', id:'author-#{author.id}' %></p>
-<% end %>
-</section>
-<p>Pages: <%= book.pages %></p>
-<p>Year: <%= book.year %></p>
-<p><img class="small-image" src=<%= book.cover_url %> alt=<%=book.title%>></p>
+  <h3><%= book.title %></h3>
+  <section id="alternate-authors">
+  <p>Other Authors:
+  <% @alternate_authors.map do |author|%>
+    <%= link_to author.name, author_path(author), class:'book-author', id:'author-#{author.id}' %></p>
+  <% end %>
+  </section>
+  <p>Pages: <%= book.pages %></p>
+  <p>Year: <%= book.year %></p>
+  <p><img class="small-image" src=<%= book.cover_url %> alt=<%=book.title%>></p>
+  <p>Top Review:</p>
+  <p>Headline: <%= book.top_review.first[:headline] %></p>
+  <p>Username: <%= link_to book.top_review.first.user.username, user_path(book.top_review.first.user), class:'review-user', id:'user-#{book.top_review.first.user.id}' %></p>
+  <p>Rating: <%= book.top_review.first[:rating] %></p>
+
 <% end %>
