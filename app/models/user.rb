@@ -18,4 +18,13 @@ class User < ApplicationRecord
     pluck(:username)
   end
 
+
+  # def sort_newest_first
+  #   self.order(:created_at).reverse_order
+  # end
+  #
+  # def sort_oldest_first
+  #   reviews.order(:created_at)
+  # end
+
 end
