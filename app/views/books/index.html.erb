@@ -28,6 +28,8 @@
   <% end %>
 </section>
 
+
+
 <br>
 <a class="button" href="/books/new">New Book</a>
 
@@ -37,14 +39,14 @@
   <% @books.each do |book| %>
     <section id="books">
       <p>Title: <%= link_to book.title, book_path(book), class:'book-title', id:'book-#{book.id}' %></p>
-
-      <p>Author(s)</p>
+      <p>Author(s):
       <% book.authors.each do |author| %>
       <section id="authors">
-        <p>Author: <%= link_to author.name, author_path(author), class:'book-author', id:'author-#{author.id}' %></p>
+        <%= link_to author.name, author_path(author), class:'book-author', id:'author-#{author.id}' %>
       </section>
       <% end %>
-
+      <p>Average Rating: <%= book.average_rating.to_f.round(2) %></p>
+      <p>Reviews: <%= book.total_reviews %></p>
       <p>Page Count: <%= book.pages %></p>
       <p>Published: <%= book.year %></p>
       <p><img src=<%= book.cover_url %> alt=<%=book.title%>></p>

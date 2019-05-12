@@ -30,7 +30,7 @@ describe "user clicks reviewer on any book review" do
       css.authors << Author.find_or_create_by(name: 'Chad Hadfield')
 
       user_2 = User.create(username: "Fopper")
-      user_2.reviews.create(book: css, body: "it into one review (for my full review, including my four-year-old's reaction to it", headline: 'I have so many good things', rating: 5)
+      user_2.reviews.create(book: css, body: "this is the body of a review", headline: 'this is the headline of a review', rating: 1)
 
       visit books_path
       click_link(astronaut.title)
@@ -42,13 +42,11 @@ describe "user clicks reviewer on any book review" do
       expect(page).to have_content(astronaut.reviews[0].user.username)
       expect(page).to have_content(astronaut.reviews[0].headline)
       expect(page).to have_content(astronaut.reviews[0].body)
-      expect(page).to have_content(astronaut.reviews[0].rating)
       expect(page).to have_content(astronaut.reviews[0].book.title)
 
       expect(page).to_not have_content(css.reviews[0].user.username)
       expect(page).to_not have_content(css.reviews[0].headline)
       expect(page).to_not have_content(css.reviews[0].body)
-      expect(page).to_not have_content(css.reviews[0].rating)
       expect(page).to_not have_content(css.reviews[0].book.title)
 
     end

@@ -11,7 +11,6 @@ describe "user sees one author" do
       visit books_path
 
       click_link(astronaut.authors[0].name)
-
       expect(page).to have_content(astronaut.title)
       expect(page).to have_content(astronaut.pages)
       expect(page).to have_content(astronaut.year)

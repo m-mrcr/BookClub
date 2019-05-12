@@ -299,6 +299,40 @@ describe "user sees all books" do
 
         expect(page).to have_link(astronaut.authors[0].name)
       end
+
+      # it "displays number of reviews and average rating" do
+      #   astronaut = Book.create(title: "An Astronaut's Guide to Life on Earth", pages: 284, year: 2013, cover_url: 'http://media.npr.org/assets/bakertaylor/covers/a/an-astronauts-guide-to-life-on-earth/9780316253017_custom-72b5b1e3d259fb604fee1401424db3c8cd04cfe0-s6-c30.jpg')
+      #   css = Book.create(title: 'CSSucks', pages: 420, year: 2019, cover_url: 'https://i1.wp.com/www.developermemes.com/wp-content/uploads/2014/01/CSS-Sucks-TShirt-Meme.jpg?resize=385%2C232')
+      #
+      #   user_1.reviews.create(book: astronaut, body: "I have so many good things to say about this book I don't think they'll all fit into one review (for my full review, including my four-year-old's reaction to it, please visit my blog, Cozy Little Book Journal).", headline: 'I have so many good things to say about this book', rating: 5)
+      #   user_2.reviews.create(book: astronaut, body: "Have you ever wanted to know the life of an astronaut? How do you even get to be one? What do they do, especially when on earth? Why do they even do it? And how do you combine that with having a family? This wonderful new book will tell you all about it.", headline: 'Have you ever wanted to know the life of an astronaut?', rating: 5)
+      #   user_3.reviews.create(book: astronaut, body: 'I hate space for some reason', headline: 'Boo Space', rating: 5)
+      #   user_1.reviews.create(book: css, body: "Make Your Psychiatrist Go To The Gym More", headline: "Scary Truths That Will", rating: 1)
+      #   user_2.reviews.create(book: css, body: "Agriculture Secretary Thomas J. Vilsack", headline: "Photoshop Tips From", rating: 1)
+      #
+      #   user_1 = User.create(username: "Snozzlebert Chesterfield")
+      #   user_2 = User.create(username: "Snorkeldink Crumplehorn")
+      #   user_3 = User.create(username: "Fiddlestick Calldispatch")
+      #
+      #   astronaut.authors << Author.find_or_create_by(name: 'Chris Hadfield')
+      #   css.authors << Author.find_or_create_by(name: 'Matt Weiss')
+      #
+      #
+      #
+      #
+      #   visit books_path
+      #
+      #   expect(page).to have_link(astronaut.title)
+      #   expect(page).to have_link(css.title)
+      #   expect(page).to have_content(astronaut.pages)
+      #   expect(page).to have_content(css.pages)
+      #   expect(page).to have_content(astronaut.year)
+      #   expect(page).to have_content(css.year)
+      #   expect(page).to have_link(astronaut.authors[0].name)
+      #   expect(page).to have_link(css.authors[0].name)
+      #   expect(page).to have_xpath("//img[contains(@src,'#{astronaut.cover_url}')]")
+      #   expect(page).to have_xpath("//img[contains(@src,'#{css.cover_url}')]")
+      # end
     end
   end
 end
