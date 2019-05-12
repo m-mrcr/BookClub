@@ -2,15 +2,15 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @reviews = Review.where(user_id: params[:id])
     case params[:sort]
     when "ascend"
       # require 'pry'; binding.pry
-      @reviews = Review.where(user_id: params[:id]).sort_oldest_first
+      @reviews = @reviews.order(:created_at)
     when "descend"
       # require 'pry'; binding.pry
-      @reviews = Review.where(user_id: params[:id]).sort_newest_first
+      @reviews = @reviews.order(:created_at).reverse_order
     else
-      @reviews = Review.where(user_id: params[:id])
     end
   end
 
