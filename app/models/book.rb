@@ -20,6 +20,10 @@ class Book < ApplicationRecord
     reviews.average(:rating)
   end
 
+  def total_reviews
+    reviews.count
+  end
+
   def top_review
     reviews.order(:rating).reverse_order.limit(1)
   end
