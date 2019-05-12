@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20190507220409) do
     t.string "headline"
     t.text "body"
     t.integer "rating"
+    t.string "username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
