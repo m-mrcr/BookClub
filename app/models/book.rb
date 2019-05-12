@@ -20,6 +20,10 @@ class Book < ApplicationRecord
     reviews.average(:rating)
   end
 
+  def top_review
+    reviews.order(:rating).reverse_order.limit(1)
+  end
+
 end
 
 # select("books.title, AVG(reviews.rating) AS avg_rating").joins(:reviews).group(:title).order("avg_rating DESC")
