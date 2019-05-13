@@ -22,9 +22,6 @@ class BooksController < ApplicationController
     else
       @books = Book.all
     end
-
-
-
   end
 
   def show
@@ -65,11 +62,9 @@ class BooksController < ApplicationController
     end
   end
 
-
   private
 
   def book_params
     params.require(:book).permit(:title, :year, :pages)
   end
-
 end
