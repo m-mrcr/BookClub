@@ -34,12 +34,12 @@ describe "user inputs new review" do
 
       review_headline = "Some Bubkus Review"
       review_username = "littleKitty9000"
-      review_rating = 4
       review_body = "I know nothing about this book, I've never read it."
 
       fill_in "review[headline]", with: review_headline
       fill_in "username", with: review_username
-      fill_in "review[rating]", with: review_rating
+
+      page.select '4'
       fill_in "review[body]", with: review_body
       click_on "Submit Review"
 
