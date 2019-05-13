@@ -11,6 +11,7 @@ describe "user sees one author" do
       visit books_path
 
       click_link(astronaut.authors[0].name)
+
       expect(page).to have_content(astronaut.title)
       expect(page).to have_content(astronaut.pages)
       expect(page).to have_content(astronaut.year)
@@ -51,6 +52,55 @@ describe "user sees one author" do
 
       expect(page).to have_content(astronaut.reviews[0].headline)
       expect(page).to_not have_content(astronaut.reviews[1].headline)
+    end
+
+    it "displays link to Delete Author" do
+      astronaut = Book.create(title: "An Astronaut's Guide to Life on Earth", pages: 284, year: 2013, cover_url: 'http://media.npr.org/assets/bakertaylor/covers/a/an-astronauts-guide-to-life-on-earth/9780316253017_custom-72b5b1e3d259fb604fee1401424db3c8cd04cfe0-s6-c30.jpg')
+      astronaut.authors << Author.find_or_create_by(name: 'Chris Hadfield')
+
+      visit books_path
+      click_link(astronaut.authors[0].name)
+
+      expect(page).to have_content("Delete Author")
+    end
+
+    it "redirects to book_index after displaying and clicking delete author link" do
+      astronaut = Book.create(title: "An Astronaut's Guide to Life on Earth", pages: 284, year: 2013, cover_url: 'http://media.npr.org/assets/bakertaylor/covers/a/an-astronauts-guide-to-life-on-earth/9780316253017_custom-72b5b1e3d259fb604fee1401424db3c8cd04cfe0-s6-c30.jpg')
+      astronaut.authors << Author.find_or_create_by(name: 'Chris Hadfield')
+
+      visit books_path
+      click_link(astronaut.authors[0].name)
+      click_link("Delete Author")
+
+      expect(current_path).to eq(books_path)
+    end
+
+    it "does not show deleted author after clicking link and redirecting to book_index" do
+      astronaut = Book.create(title: "An Astronaut's Guide to Life on Earth", pages: 284, year: 2013, cover_url: 'http://media.npr.org/assets/bakertaylor/covers/a/an-astronauts-guide-to-life-on-earth/9780316253017_custom-72b5b1e3d259fb604fee1401424db3c8cd04cfe0-s6-c30.jpg')
+      astronaut.authors << Author.find_or_create_by(name: 'Chris Hadfield')
+
+      visit books_path
+      click_link(astronaut.authors[0].name)
+      click_link("Delete Author")
+
+      expect(current_path).to eq(books_path)
+      expect(page).to_not have_content(astronaut.authors[0].name)
+    end
+
+    it "shows co-author of book after author is deleted" do
+      astronaut = Book.create(title: "An Astronaut's Guide to Life on Earth", pages: 284, year: 2013, cover_url: 'http://media.npr.org/assets/bakertaylor/covers/a/an-astronauts-guide-to-life-on-earth/9780316253017_custom-72b5b1e3d259fb604fee1401424db3c8cd04cfe0-s6-c30.jpg')
+      astronaut.authors << Author.find_or_create_by(name: 'Chris Hadfield')
+      astronaut.authors << Author.find_or_create_by(name: 'Roald Dahl')
+      witches = Book.create(title: "The Witches", pages: 208, year: 2007, cover_url: "https://images-na.ssl-images-amazon.com/images/I/51SBbkhL2RL._SY346_.jpg")
+      witches.authors << Author.find_or_create_by(name: 'Roald Dahl')
+
+      visit books_path
+      click_link(astronaut.authors[0].name)
+      click_link("Delete Author")
+
+      expect(current_path).to eq(books_path)
+      expect(page).to_not have_content(astronaut.authors[0].name)
+      expect(page).to have_content(witches.authors[0].name)
     end
   end
 end
