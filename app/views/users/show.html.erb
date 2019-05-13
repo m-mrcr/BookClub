@@ -4,21 +4,23 @@
 <%= link_to "Oldest to Newest", controller: "users", action: "show", sort: "ascend"%>
 <br >
 <%= link_to "Newest to Oldest", controller: "users", action: "show", sort: "descend"%>
-<section id='user-info'>
+
+
+
 <ul id='all-reviews'>
-<% @user.reviews.each do |review| %>
-<hr>
-<br>
-<img class="small-image" src=<%= review.book.cover_url %> alt=<%=review.book.title%>>
-  <section id='review-<%= review.id %>'
-  <ul>
-    <li>Book Title: <%= review.book.title %></li>
-    <li>Headline: <%= review.headline %></li>
-    <li>Body: <%= review.body %></li>
-    <li>Rating: <%= review.rating %></li>
-    <li>Date Created:<%= review.book.created_at %></li>
-  </ul>
-  <%= link_to 'Delete Review', book_review_path(review.book.id, review, user_id: @user.id), method: :delete %>
-</section>
+<% @reviews.each do |review| %>
+
+  <li>
+    <section id='review-<%= review.id %>'
+    <img class="small-image" src=<%= review.book.cover_url %> alt=<%=review.book.title%>>
+    <p>Book Title: <%= review.book.title %></p>
+    <p>Headline: <%= review.headline %></p>
+    <p>Body: <%= review.body %></p>
+    <p>Rating: <%= review.rating %></p>
+    <p>Date Created:<%= review.book.created_at %></p>
+    <%= link_to 'Delete Review', book_review_path(review.book.id, review, user_id: @user.id), method: :delete %>
+  </section>
+  </li>
   <br >
 <% end %>
+</ul>
