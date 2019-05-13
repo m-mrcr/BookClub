@@ -299,66 +299,79 @@ describe "user sees all books" do
 
         expect(page).to have_link(astronaut.authors[0].name)
       end
+    end
 
-      it "sorts reviews after clicking links" do
-        astronaut = Book.create(title: "An Astronaut's Guide to Life on Earth", pages: 884, year: 2013, cover_url: 'http://media.npr.org/assets/bakertaylor/covers/a/an-astronauts-guide-to-life-on-earth/9780316253017_custom-72b5b1e3d259fb604fee1401424db3c8cd04cfe0-s6-c30.jpg')
-        astronaut.authors << Author.find_or_create_by(name: 'Chris Hadfield')
+    describe "user can sort books by clicking links" do
+      before :each do
+        @astronaut = Book.create(title: "An Astronaut's Guide to Life on Earth", pages: 884, year: 2013, cover_url: 'http://media.npr.org/assets/bakertaylor/covers/a/an-astronauts-guide-to-life-on-earth/9780316253017_custom-72b5b1e3d259fb604fee1401424db3c8cd04cfe0-s6-c30.jpg')
+        @astronaut.authors << Author.find_or_create_by(name: 'Chris Hadfield')
 
-        css = Book.create(title: "Heyyy", pages: 456, year: 2012, cover_url: 'http://media.npr.org/assets/bakertaylor/covers/a/an-astronauts-guide-to-life-on-earth/9780316253017_custom-72b5b1e3d259fb604fee1401424db3c8cd04cfe0-s6-c30.jpg')
-        css.authors << Author.find_or_create_by(name: 'Chad Hadfield')
+        @css = Book.create(title: "CSS Sucks", pages: 456, year: 2012, cover_url: 'http://media.npr.org/assets/bakertaylor/covers/a/an-astronauts-guide-to-life-on-earth/9780316253017_custom-72b5b1e3d259fb604fee1401424db3c8cd04cfe0-s6-c30.jpg')
+        @css.authors << Author.find_or_create_by(name: 'Chad Hadfield')
 
-        user_1 = User.create(username: "Flipper")
-        user_2 = User.create(username: "Flopper")
+        @user_1 = User.create(username: "Flipper")
+        @user_2 = User.create(username: "Flopper")
 
-        user_1.reviews.create(book: astronaut, body: "I don't know!", headline: 'review headline 1', rating: 5)
-        user_2.reviews.create(book: astronaut, body: "Enthralling", headline: 'review headline 3', rating: 5)
-        user_1.reviews.create(book: css, body: "this is a review", headline: 'review headline 2', rating: 1)
+        @user_1.reviews.create(book: @astronaut, body: "I don't know!", headline: 'review headline 1', rating: 5)
+        @user_2.reviews.create(book: @astronaut, body: "Enthralling", headline: 'review headline 3', rating: 5)
+        @user_1.reviews.create(book: @css, body: "this is a review", headline: 'review headline 2', rating: 1)
 
         visit books_path
+      end
 
-        click_link("Average Rating - Best to Worst")
+      it "sorts by average rating, best to worst" do
+        click_link("Sort Best to Worst Ratings")
 
-        within '#all-books' do
-          expect(page.all('li')[0]).to have_content("review headline 1")
-          expect(page.all('li')[1]).to have_content("review headline 2")
-        end
-
-        click_link("Average Rating - Worst to Best")
-
-        within '#all-books' do
-          expect(page.all('li')[0]).to have_content("review headline 2")
-          expect(page.all('li')[1]).to have_content("review headline 1")
-        end
-
-        click_link("Number of Pages - Most to Least")
-
-        within '#all-books' do
-          expect(page.all('li')[0]).to have_content("review headline 1")
-          expect(page.all('li')[1]).to have_content("review headline 2")
-        end
-
-        click_link("Number of Pages - Least to Most")
-
-        within '#all-books' do
-          expect(page.all('li')[0]).to have_content("review headline 2")
-          expect(page.all('li')[1]).to have_content("review headline 1")
-        end
-
-        click_link("Number of Reviews - Most to Least")
-
-        within '#all-books' do
-          expect(page.all('li')[0]).to have_content("review headline 1")
-          expect(page.all('li')[1]).to have_content("review headline 2")
-        end
-
-        click_link("Number of Reviews - Least to Most")
-
-        within '#all-books' do
-          expect(page.all('li')[0]).to have_content("review headline 2")
-          expect(page.all('li')[1]).to have_content("review headline 1")
+        within '#books' do
+          expect(page.all('li')[0]).to have_link(@astronaut.title)
+          expect(page.all('li')[1]).to have_link(@css.title)
         end
       end
 
+      it "sorts by average rating, worst to best" do
+        click_link("Sort Worst to Best Ratings")
+
+        within '#books' do
+          expect(page.all('li')[0]).to have_link(@css.title)
+          expect(page.all('li')[1]).to have_link(@astronaut.title)
+        end
+      end
+
+      it "sorts by number of pages, most to least" do
+        click_link("Sort Most to Least Pages")
+
+        within '#books' do
+          expect(page.all('li')[0]).to have_link(@astronaut.title)
+          expect(page.all('li')[1]).to have_link(@css.title)
+        end
+      end
+
+      it "sorts by number of pages, least to most" do
+        click_link("Sort Least to Most Pages")
+
+        within '#books' do
+          expect(page.all('li')[0]).to have_link(@css.title)
+          expect(page.all('li')[1]).to have_link(@astronaut.title)
+        end
+      end
+
+      it "sorts by number of reviews, most to least" do
+        click_link("Sort Most to Least Reviews")
+
+        within '#books' do
+          expect(page.all('li')[0]).to have_link(@astronaut.title)
+          expect(page.all('li')[1]).to have_link(@css.title)
+        end
+      end
+
+      it "sorts by number of reviews, least to most" do
+        click_link("Sort Least to Most Reviews")
+
+        within '#books' do
+          expect(page.all('li')[0]).to have_link(@css.title)
+          expect(page.all('li')[1]).to have_link(@astronaut.title)
+        end
+      end
     end
   end
 end
