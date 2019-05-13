@@ -77,16 +77,38 @@
 
 
 
-
-
-
-
-
 <% if @books == [] %>
   <h2>No books!</h2>
 <% else %>
+
+
+
 <section id="books">
   <% @books.each do |book| %>
+
+
+
+
+  <div class="card" style="width: 18rem;">
+    <img src=<%= book.cover_url %> class="card-img-top" alt=<%=book.title%>>
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+
+
+
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+
+
+
+
+
+    </div>
+  </div>
+
+
+
+
   <li>
     <p>Title: <%= link_to book.title, book_path(book), class:'book-title', id:'book-#{book.id}' %></p>
     <p>Author(s):
@@ -101,6 +123,8 @@
     <p>Published: <%= book.year %></p>
     <p><img src=<%= book.cover_url %> alt=<%=book.title%>></p>
   </li>
+
+
   <% end %>
 </section>
 <% end %>
