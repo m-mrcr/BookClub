@@ -36,6 +36,44 @@
     </nav>
   </nav>
 
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <span class="glyphicon glyphicon-cloud" aria-hidden="true"></span>
+        <section id="best-books">
+          <br>
+          <h2>Best Books</h2>
+          <% @three_best.each do |book| %>
+            <%= book.title %>,
+            <%= book.average_rating.to_f.round(2) %> stars<br>
+          <% end %>
+        </section>
+      </div>
+
+      <div class="col-md-4">
+        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+        <section id="worst-books">
+          <br>
+          <h2>Worst Books</h2>
+          <% @three_worst.each do |book| %>
+            <%= book.title %>,
+            <%= book.average_rating.to_f.round(2) %> stars<br>
+          <% end %>
+        </section>
+      </div>
+
+      <div class="col-md-4">
+        <span class="glyphicon glyphicon-console" aria-hidden="true"></span>
+        <section id="top-three-users">
+          <br>
+          <h2>Three Most Active Users</h2>
+          <% @three_top_users.each do |user| %>
+            <%= user.username %><br>
+          <% end %>
+        </section>
+      </div>
+    </div>
+  </div>
 
 
 
@@ -43,34 +81,6 @@
 
 
 
-
-<br>
-<section id="best-books">
-  <h2>The Best of the Best!</h2>
-  <% @three_best.each do |book| %>
-    <%= book.title %>
-    <%= book.average_rating.to_f.round(2) %>
-    <br>
-  <% end %>
-</section>
-<br>
-
-<section id="worst-books">
-  <h2>The Worst of the Worst!</h2>
-  <% @three_worst.each do |book| %>
-    <%= book.title %>
-    <%= book.average_rating.to_f.round(2) %>
-    <br>
-  <% end %>
-</section>
-<br>
-<h2>Top Three Most Active Users</h2>
-<section id="top-three-users">
-  <% @three_top_users.each do |user| %>
-    <%= user.username %>
-    <br >
-  <% end %>
-</section>
 
 <% if @books == [] %>
   <h2>No books!</h2>
