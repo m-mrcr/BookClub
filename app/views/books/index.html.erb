@@ -82,6 +82,8 @@
 <% else %>
 <section id="books">
   <% @books.each do |book| %>
+  <ul>
+  <li>
   <div class="card" style="width: 18rem;">
     <img src=<%= book.cover_url %> class="card-img-top" alt=<%=book.title%>>
     <div class="card-body">
@@ -99,7 +101,11 @@
       <p>Published: <%= book.year %></p>
     </div>
   </div>
+  </li>
+
+</ul>
   <% end %>
+
 </section>
 <% end %>
 
