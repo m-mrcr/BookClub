@@ -28,12 +28,40 @@ class Book < ApplicationRecord
     reviews.order(:rating).reverse_order.limit(1)
   end
 
+  def self.sort_avg_rating_best_to_worst
+    select("books.*, AVG(reviews.rating) AS average_book_rating")
+      .joins(:reviews).group("books.id")
+      .order("average_book_rating")
+      .reverse_order
+
+    # SELECT book_id, AVG(rating)
+    # FROM books
+    # JOIN reviews ON books.id = reviews.book_id
+    # GROUP BY(book_id);
+  end
+
+  def self.sort_avg_rating_worst_to_best
+    select("books.*, AVG(reviews.rating) AS average_book_rating")
+      .joins(:reviews).group("books.id")
+      .order("average_book_rating")
+  end
+
+  def sort_number_pages_most_to_least
+  # def self.sort_number_pages_most_to_least ?????????
+    order(:pages).reverse_order
+  end
+
+  def sort_number_pages_least_to_most
+  # def self.sort_number_pages_least_to_most ?????????
+    order(:pages)
+  end
+
+  def sort_number_reviews_most_to_least
+    order(total_reviews)
+    # order(reviews.count)
+  end
+
+  def sort_number_reviews_least_to_most
+  end
+
 end
-
-# select("books.title, AVG(reviews.rating) AS avg_rating").joins(:reviews).group(:title).order("avg_rating DESC")
-
-# SELECT books.title, AVG(reviews.rating) AS avg_rating
-# FROM books INNER JOIN reviews
-# ON reviews.book_id = books.id
-# GROUP BY books.title
-# ORDER By avg_rating DESC;
