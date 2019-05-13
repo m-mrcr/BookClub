@@ -19,3 +19,4 @@
       <p>Rating: <%= book.top_review.first[:rating] %></p>
     <% end %>
 <% end %>
+<%= link_to 'Delete Author', author_path(@author.id), method: :delete %>
