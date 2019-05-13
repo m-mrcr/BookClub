@@ -1,7 +1,11 @@
 <h1><%= @user.username %></h1>
 <br>
 <h2>Reviews</h2>
+<%= link_to "Oldest to Newest", controller: "users", action: "show", sort: "ascend"%>
+<br >
+<%= link_to "Newest to Oldest", controller: "users", action: "show", sort: "descend"%>
 <section id='user-info'>
+<ul id='all-reviews'>
 <% @user.reviews.each do |review| %>
 <hr>
 <br>
@@ -18,5 +22,3 @@
 </section>
   <br >
 <% end %>
-<br>
-</section>
