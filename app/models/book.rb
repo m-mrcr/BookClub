@@ -29,39 +29,49 @@ class Book < ApplicationRecord
   end
 
   def self.sort_avg_rating_best_to_worst
-    select("books.*, AVG(reviews.rating) AS average_book_rating")
-      .joins(:reviews).group("books.id")
-      .order("average_book_rating")
-      .reverse_order
-
+    # $ rails dbconsle
+    # We know we have to use join - essentially "books.reviews"
+    # We want a table with books and average rating score
     # SELECT book_id, AVG(rating)
     # FROM books
     # JOIN reviews ON books.id = reviews.book_id
     # GROUP BY(book_id);
+
+    # Once we have an SQL query, use $ puts joins(:reviews).to_sql as a starting point
+    select("books.*, AVG(reviews.rating) AS average_book_rating")
+      .joins(:reviews)
+      .group("books.id")
+      .order("average_book_rating")
+      .reverse_order
   end
 
   def self.sort_avg_rating_worst_to_best
     select("books.*, AVG(reviews.rating) AS average_book_rating")
-      .joins(:reviews).group("books.id")
+      .joins(:reviews)
+      .group("books.id")
       .order("average_book_rating")
   end
 
-  def sort_number_pages_most_to_least
-  # def self.sort_number_pages_most_to_least ?????????
+  def self.sort_number_pages_most_to_least
     order(:pages).reverse_order
   end
 
-  def sort_number_pages_least_to_most
-  # def self.sort_number_pages_least_to_most ?????????
+  def self.sort_number_pages_least_to_most
     order(:pages)
   end
 
-  def sort_number_reviews_most_to_least
-    order(total_reviews)
-    # order(reviews.count)
+  def self.sort_number_reviews_most_to_least
+    select("books.*, COUNT(reviews) AS count_of_reviews")
+      .joins(:reviews)
+      .group("books.id")
+      .order("count_of_reviews")
+      .reverse_order
   end
 
-  def sort_number_reviews_least_to_most
+  def self.sort_number_reviews_least_to_most
+    select("books.*, COUNT(reviews) AS count_of_reviews")
+      .joins(:reviews)
+      .group("books.id")
+      .order("count_of_reviews")
   end
-
 end
