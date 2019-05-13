@@ -5,24 +5,10 @@ class BooksController < ApplicationController
     @three_best = Book.three_best_books
     @three_worst = Book.three_worst_books
     @three_top_users = User.most_prolific
-
-    case params[:filter]
-    when "rating_best_to_worst"
-      @books = Book.sort_avg_rating_best_to_worst
-    when "rating_worst_to_best"
-      @books = Book.sort_avg_rating_worst_to_best
-    when "number_pages_most_to_least"
-      @books = Book.sort_number_pages_most_to_least
-    when "number_pages_least_to_most"
-      @books = Book.sort_number_pages_least_to_most
-    when "number_reviews_most_to_least"
-      @books = Book.sort_number_reviews_most_to_least
-    when "number_reviews_least_to_most"
-      @books = Book.sort_number_reviews_least_to_most
-    else
-      @books = Book.all
-    end
+    get_books
   end
+
+
 
   def show
     @book = Book.find(params[:id])
@@ -72,5 +58,24 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :year, :pages)
+  end
+
+  def get_books
+    case params[:filter]
+    when "rating_best_to_worst"
+      @books = Book.sort_avg_rating_best_to_worst
+    when "rating_worst_to_best"
+      @books = Book.sort_avg_rating_worst_to_best
+    when "number_pages_most_to_least"
+      @books = Book.sort_number_pages_most_to_least
+    when "number_pages_least_to_most"
+      @books = Book.sort_number_pages_least_to_most
+    when "number_reviews_most_to_least"
+      @books = Book.sort_number_reviews_most_to_least
+    when "number_reviews_least_to_most"
+      @books = Book.sort_number_reviews_least_to_most
+    else
+      @books = Book.all
+    end
   end
 end

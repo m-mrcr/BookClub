@@ -1,64 +1,123 @@
-<h1>All Books</h1>
-<hr>
-<br>
-<%= link_to "Sort Best to Worst Ratings", controller: "books", action: "index", filter: "rating_best_to_worst"%><br>
-<%= link_to "Sort Worst to Best Ratings", controller: "books", action: "index", filter: "rating_worst_to_best"%><br>
-<%= link_to "Sort Most to Least Pages",   controller: "books", action: "index", filter: "number_pages_most_to_least"%><br>
-<%= link_to "Sort Least to Most Pages",   controller: "books", action: "index", filter: "number_pages_least_to_most"%><br>
-<%= link_to "Sort Most to Least Reviews", controller: "books", action: "index", filter: "number_reviews_most_to_least"%><br>
-<%= link_to "Sort Least to Most Reviews", controller: "books", action: "index", filter: "number_reviews_least_to_most"%><br>
-<br>
-<section id="best-books">
-  <h2>The Best of the Best!</h2>
-  <% @three_best.each do |book| %>
-    <%= book.title %>
-    <%= book.average_rating.to_f.round(2) %>
-    <br>
-  <% end %>
-</section>
-<br>
+<html lang="en">
+  <head>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap 101 Template</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+  </head>
+<body>
+  <nav class="navmaster">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/books">Books Central</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/books/new">Enter New Book <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Sort Books Order
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <%= link_to "Sort Best to Worst Ratings", controller: "books", action: "index", filter: "rating_best_to_worst"%><br>
+              <%= link_to "Sort Worst to Best Ratings", controller: "books", action: "index", filter: "rating_worst_to_best"%><br>
+              <%= link_to "Sort Most to Least Pages",   controller: "books", action: "index", filter: "number_pages_most_to_least"%><br>
+              <%= link_to "Sort Least to Most Pages",   controller: "books", action: "index", filter: "number_pages_least_to_most"%><br>
+              <%= link_to "Sort Most to Least Reviews", controller: "books", action: "index", filter: "number_reviews_most_to_least"%><br>
+              <%= link_to "Sort Least to Most Reviews", controller: "books", action: "index", filter: "number_reviews_least_to_most"%><br>            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </nav>
 
-<section id="worst-books">
-  <h2>The Worst of the Worst!</h2>
-  <% @three_worst.each do |book| %>
-    <%= book.title %>
-    <%= book.average_rating.to_f.round(2) %>
-    <br>
-  <% end %>
-</section>
-<br>
-<h2>Top Three Most Active Users</h2>
-<section id="top-three-users">
-  <% @three_top_users.each do |user| %>
-    <%= user.username %>
-    <br >
-  <% end %>
-</section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <span class="glyphicon glyphicon-cloud" aria-hidden="true"></span>
+        <section id="best-books">
+          <br>
+          <h2>Best Books</h2>
+          <% @three_best.each do |book| %>
+            <%= book.title %>,
+            <%= book.average_rating.to_f.round(2) %> stars<br>
+          <% end %>
+        </section>
+      </div>
+
+      <div class="col-md-4">
+        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+        <section id="worst-books">
+          <br>
+          <h2>Worst Books</h2>
+          <% @three_worst.each do |book| %>
+            <%= book.title %>,
+            <%= book.average_rating.to_f.round(2) %> stars<br>
+          <% end %>
+        </section>
+      </div>
+
+      <div class="col-md-4">
+        <span class="glyphicon glyphicon-console" aria-hidden="true"></span>
+        <section id="top-three-users">
+          <br>
+          <h2>Three Most Active Users</h2>
+          <% @three_top_users.each do |user| %>
+            <%= user.username %><br>
+          <% end %>
+        </section>
+      </div>
+    </div>
+  </div>
 
 
-
-<br>
-<a class="button" href="/books/new">New Book</a>
 
 <% if @books == [] %>
   <h2>No books!</h2>
 <% else %>
 <section id="books">
   <% @books.each do |book| %>
+  <ul>
   <li>
-    <p>Title: <%= link_to book.title, book_path(book), class:'book-title', id:'book-#{book.id}' %></p>
-    <p>Author(s):
-    <% book.authors.each do |author| %>
-    <section id="authors">
-      <%= link_to author.name, author_path(author), class:'book-author', id:'author-#{author.id}' %>
-    </section>
-    <% end %>
-    <p>Average Rating: <%= book.average_rating.to_f.round(2) %></p>
-    <p>Reviews: <%= book.total_reviews %></p>
-    <p>Page Count: <%= book.pages %></p>
-    <p>Published: <%= book.year %></p>
-    <p><img src=<%= book.cover_url %> alt=<%=book.title%>></p>
+  <div class="card" style="width: 18rem;">
+    <img src=<%= book.cover_url %> class="card-img-top" alt=<%=book.title%>>
+    <div class="card-body">
+      <a href=<%= book_path(book) %> class="btn btn-primary"><%= book.title %></a>
+
+      <% book.authors.each do |author| %>
+      <section id="authors">
+        <%= link_to author.name, author_path(author), class:'book-author', id:'author-#{author.id}' %>
+      </section>
+      <% end %>
+
+      <p class="card-text">Average Rating: <%= book.average_rating.to_f.round(2) %></p>
+      <p>Reviews: <%= book.total_reviews %></p>
+      <p>Page Count: <%= book.pages %></p>
+      <p>Published: <%= book.year %></p>
+    </div>
+  </div>
   </li>
+
+</ul>
   <% end %>
+
 </section>
 <% end %>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</html>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

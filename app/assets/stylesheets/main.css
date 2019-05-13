@@ -1,9 +1,25 @@
 img {
-  max-width: 400px;
+  padding: 13px;
+  max-width: 350px;
   max-height: 800px;
 }
 
 .small-image {
   max-width: 200px;
   max-height: 600px;
+}
+
+#books {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-md-4 {
+  border: solid;
+  border-width: thin;
+  padding: 25px;
+}
+
+ul {
+  list-style-type: none;
 }
