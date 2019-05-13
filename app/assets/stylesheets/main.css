@@ -19,3 +19,7 @@ img {
   border-width: thin;
   padding: 25px;
 }
+
+ul {
+  list-style-type: none;
+}
