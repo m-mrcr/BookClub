@@ -130,6 +130,6 @@ describe "user clicks reviewer on any book review" do
       expect(page).to_not have_content(astronaut.reviews[0].body)
       expect(page).to_not have_content(astronaut.reviews[0].book.title)
     end
-    
+
   end
 end
