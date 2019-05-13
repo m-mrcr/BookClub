@@ -80,59 +80,28 @@
 <% if @books == [] %>
   <h2>No books!</h2>
 <% else %>
-
-
-
 <section id="books">
   <% @books.each do |book| %>
-
-
-
-
   <div class="card" style="width: 18rem;">
     <img src=<%= book.cover_url %> class="card-img-top" alt=<%=book.title%>>
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
+      <a href=<%= book_path(book) %> class="btn btn-primary"><%= book.title %></a>
 
+      <% book.authors.each do |author| %>
+      <section id="authors">
+        <%= link_to author.name, author_path(author), class:'book-author', id:'author-#{author.id}' %>
+      </section>
+      <% end %>
 
-
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-
-
-
-
-
+      <p class="card-text">Average Rating: <%= book.average_rating.to_f.round(2) %></p>
+      <p>Reviews: <%= book.total_reviews %></p>
+      <p>Page Count: <%= book.pages %></p>
+      <p>Published: <%= book.year %></p>
     </div>
   </div>
-
-
-
-
-  <li>
-    <p>Title: <%= link_to book.title, book_path(book), class:'book-title', id:'book-#{book.id}' %></p>
-    <p>Author(s):
-    <% book.authors.each do |author| %>
-    <section id="authors">
-      <%= link_to author.name, author_path(author), class:'book-author', id:'author-#{author.id}' %>
-    </section>
-    <% end %>
-    <p>Average Rating: <%= book.average_rating.to_f.round(2) %></p>
-    <p>Reviews: <%= book.total_reviews %></p>
-    <p>Page Count: <%= book.pages %></p>
-    <p>Published: <%= book.year %></p>
-    <p><img src=<%= book.cover_url %> alt=<%=book.title%>></p>
-  </li>
-
-
   <% end %>
 </section>
 <% end %>
-
-
-
-
-
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
