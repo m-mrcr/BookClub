@@ -4,6 +4,8 @@ class Book < ApplicationRecord
   has_many :authors, through: :author_books
   validates_presence_of :title, :pages, :year, :cover_url
 
+  ################ BEGIN "NEEDS TESTS"########################
+
   def self.titles
     self.select(:title).pluck(:title)
   end
@@ -27,6 +29,9 @@ class Book < ApplicationRecord
   def top_review
     reviews.order(:rating).reverse_order.limit(1)
   end
+################ END "NEEDS TESTS"########################
+
+
 
   def self.sort_avg_rating_best_to_worst
     # $ rails dbconsle

@@ -2,6 +2,8 @@ class User < ApplicationRecord
   has_many :reviews
   validates_presence_of :username
 
+  ################ BEGIN "NEEDS TESTS"########################
+
   def review_count
     reviews.count
   end
@@ -25,5 +27,6 @@ class User < ApplicationRecord
   def sort_oldest_first
     reviews.order(:created_at)
   end
+  ################ END "NEEDS TESTS"########################
 
 end
