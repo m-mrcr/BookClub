@@ -220,11 +220,11 @@ describe "user sees all books" do
         visit books_path
 
         within '#worst-books' do
-          expect(page).to have_content("CSSucks")
-          expect(page).to have_content("To Kill a Mockingbird")
-          expect(page).to have_content("Harry Potter and the Order of the Phoenix")
+          expect(page).to have_content(css.title)
+          expect(page).to have_content(mockingbird.title)
+          expect(page).to have_content(potter.title)
 
-          expect(page).to_not have_content("The Hunger Games")
+          expect(page).to_not have_content(hunger.title)
         end
       end
 
