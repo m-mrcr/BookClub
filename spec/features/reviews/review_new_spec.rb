@@ -44,9 +44,9 @@ describe "user inputs new review" do
       click_on "Submit Review"
 
       expect(page).to have_content(review_headline)
-      expect(current_path).to eq("/books/#{astronaut.id}")
+      expect(current_path).to eq(books_path + "/#{astronaut.id}")
       expect(page).to_not have_content("CSSucks")
-      expect(current_path).to_not eq("/books/#{css.id}")
+      expect(current_path).to_not eq(books_path + "/#{css.id}")
 
       expect(page).to have_content("Littlekitty9000")
     end

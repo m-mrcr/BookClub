@@ -23,7 +23,7 @@ describe "user inputs new book" do
       click_on "Submit Book"
 
       expect(page).to have_content(island_title)
-      expect(current_path).to eq("/books/#{Book.where(title:island_title)[0].id}")
+      expect(current_path).to eq(books_path + "/#{Book.where(title:island_title)[0].id}")
     end
 
     it "displays a form to enter a new book for multiple authors" do
@@ -46,7 +46,7 @@ describe "user inputs new book" do
       click_on "Submit Book"
 
       expect(page).to have_content(island_title)
-      expect(current_path).to eq("/books/#{Book.where(title:island_title)[0].id}")
+      expect(current_path).to eq(books_path + "/#{Book.where(title:island_title)[0].id}")
     end
 
     it "formats multiple authors" do
@@ -70,7 +70,7 @@ describe "user inputs new book" do
 
       expect(page).to have_content("Aldus Huxley")
       expect(page).to have_content("Albus Dumbledore")
-      expect(current_path).to eq("/books/#{Book.where(title:island_title)[0].id}")
+      expect(current_path).to eq(books_path + "/#{Book.where(title:island_title)[0].id}")
     end
 
     it "shows default unavailable book" do

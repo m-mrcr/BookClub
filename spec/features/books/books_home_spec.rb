@@ -43,7 +43,7 @@ describe "user sees all books" do
 
       click_link("New Book")
 
-      expect(current_path).to eq('/books/new')
+      expect(current_path).to eq(new_book_path)
     end
 
     describe "displays stats about all books" do
@@ -129,11 +129,11 @@ describe "user sees all books" do
 
         visit books_path
         within '#best-books' do
-          expect(page).to have_content("The Chronicles of Narnia")      #Book titles and average rating
-          expect(page).to have_content("Pride And Prejudice")      #Book titles and average rating
-          expect(page).to have_content("An Astronaut's Guide to Life on Earth")      #Book titles and average rating
+          expect(page).to have_content(narnia.title)
+          expect(page).to have_content(pride.title)
+          expect(page).to have_content(astronaut.title)
 
-          expect(page).to_not have_content("The Hunger Games")
+          expect(page).to_not have_content(hunger.title)
         end
       end
 
@@ -220,9 +220,9 @@ describe "user sees all books" do
         visit books_path
 
         within '#worst-books' do
-          expect(page).to have_content("CSSucks")      #Book titles and average rating
-          expect(page).to have_content("To Kill a Mockingbird")      #Book titles and average rating
-          expect(page).to have_content("Harry Potter and the Order of the Phoenix")      #Book titles and average rating
+          expect(page).to have_content("CSSucks")
+          expect(page).to have_content("To Kill a Mockingbird")
+          expect(page).to have_content("Harry Potter and the Order of the Phoenix")
 
           expect(page).to_not have_content("The Hunger Games")
         end
