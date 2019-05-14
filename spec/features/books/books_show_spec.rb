@@ -25,15 +25,15 @@ describe "user sees one book" do
       expect(page).to have_content(astronaut.year)
 
       expect(page).to have_xpath("//img[contains(@src,'#{astronaut.cover_url}')]")
-      expect(page).to have_content("Snorkeldink Crumplehorn")
-      expect(page).to have_content("I have so many good things")
+      expect(page).to have_content(user_2.username)
+      expect(page).to have_content(user_2.reviews.first.headline)
 
       expect(page).to_not have_content(hunger.title)
       expect(page).to_not have_content(hunger.pages)
       expect(page).to_not have_content(hunger.year)
       expect(page).to_not have_xpath("//img[contains(@src,'#{hunger.cover_url}')]")
-      expect(page).to_not have_content("Fiddlestick Calldispatch")
-      expect(page).to_not have_content("This is an interesting treatise")
+      expect(page).to_not have_content(user_3.username)
+      expect(page).to_not have_content(user_3.reviews.first.headline)
     end
 
     it "displays the top three reviews" do

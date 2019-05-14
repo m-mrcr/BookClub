@@ -70,8 +70,8 @@ describe "user clicks reviewer on any book review" do
       click_link("Oldest to Newest")
 
       within '#all-reviews' do
-        expect(page.all('li')[0]).to have_content("review headline 1")
-        expect(page.all('li')[1]).to have_content("review headline 2")
+        expect(page.all('li')[0]).to have_content(user_1.reviews.first.headline)
+        expect(page.all('li')[1]).to have_content(user_1.reviews.last.headline)
       end
     end
 
@@ -95,8 +95,8 @@ describe "user clicks reviewer on any book review" do
       click_link("Newest to Oldest")
 
       within '#all-reviews' do
-        expect(page.all('li')[0]).to have_content("review headline 2")
-        expect(page.all('li')[1]).to have_content("review headline 1")
+        expect(page.all('li')[0]).to have_content(user_1.reviews.last.headline)
+        expect(page.all('li')[1]).to have_content(user_1.reviews.first.headline)
       end
     end
 
@@ -128,6 +128,5 @@ describe "user clicks reviewer on any book review" do
       expect(page).to_not have_content(astronaut.reviews[0].body)
       expect(page).to_not have_content(astronaut.reviews[0].book.title)
     end
-
   end
 end

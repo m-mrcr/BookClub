@@ -45,7 +45,7 @@ describe "user inputs new review" do
 
       expect(page).to have_content(review_headline)
       expect(current_path).to eq(books_path + "/#{astronaut.id}")
-      expect(page).to_not have_content("CSSucks")
+      expect(page).to_not have_content(css.title)
       expect(current_path).to_not eq(books_path + "/#{css.id}")
 
       expect(page).to have_content("Littlekitty9000")
