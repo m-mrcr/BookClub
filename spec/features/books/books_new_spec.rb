@@ -9,12 +9,13 @@ describe "user inputs new book" do
       expect(current_path).to eq(new_book_path)
 
       island_title = "Island"
-      island_year = 1990
+      island_year = "1990"
       island_pages = 234
       island_cover_url = "https://en.wikipedia.org/wiki/File:Island.JPG"
       island_authors = "Aldus Huxley"
 
       fill_in "book[title]", with: island_title
+
       fill_in "book[year]", with: island_year
       fill_in "book[pages]", with: island_pages
       fill_in "book[cover_url]", with: island_cover_url
@@ -32,7 +33,7 @@ describe "user inputs new book" do
       expect(current_path).to eq(new_book_path)
 
       island_title = "Island"
-      island_year = 1990
+      island_year = "1990"
       island_pages = 234
       island_cover_url = "https://en.wikipedia.org/wiki/File:Island.JPG"
       island_authors = "Aldus Huxley, Albus Dumbledore"
@@ -55,7 +56,7 @@ describe "user inputs new book" do
       expect(current_path).to eq(new_book_path)
 
       island_title = "Island"
-      island_year = 1990
+      island_year = "1990"
       island_pages = 234
       island_cover_url = "https://en.wikipedia.org/wiki/File:Island.JPG"
       island_authors = "aLdUs HuXlEy, AlBuS dUmBlEdOrE"
@@ -79,7 +80,7 @@ describe "user inputs new book" do
       expect(current_path).to eq(new_book_path)
 
       island_title = "Island"
-      island_year = 1990
+      island_year = "1990"
       island_pages = 234
       island_authors = "aLdUs HuXlEy, AlBuS dUmBlEdOrE"
 
