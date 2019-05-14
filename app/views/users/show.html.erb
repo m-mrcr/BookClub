@@ -37,20 +37,19 @@
 <h1><%= @user.username %></h1>
 <br>
 <h2>Reviews</h2>
-
 <ul id='all-reviews'>
 <% @reviews.each do |review| %>
  <hr>
   <li>
     <section id='review-<%= review.id %>'
-    <img class="small-image" src=<%= review.book.cover_url %> alt=<%=review.book.title%>>
-    <p>Book Title: <%= review.book.title %></p>
-    <p>Headline: <%= review.headline %></p>
-    <p>Body: <%= review.body %></p>
-    <p>Rating: <%= review.rating %></p>
-    <p>Date Created:<%= review.book.created_at %></p>
-    <%= link_to 'Delete Review', book_review_path(review.book.id, review, user_id: @user.id), method: :delete %>
-  </section>
+      <img class="small-image" src=<%= review.book.cover_url %> alt=<%=review.book.title%>>
+      <p>Book Title: <%= review.book.title %></p>
+      <p>Headline: <%= review.headline %></p>
+      <p>Body: <%= review.body %></p>
+      <p>Rating: <%= review.rating %></p>
+      <p>Date Created:<%= review.book.created_at %></p>
+      <%= link_to 'Delete Review', book_review_path(review.book.id, review, user_id: @user.id), method: :delete %>
+    </section>
   </li>
   <br >
 <% end %>
