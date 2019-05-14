@@ -29,7 +29,8 @@
               <%= link_to "Sort Most to Least Pages",   controller: "books", action: "index", filter: "number_pages_most_to_least"%><br>
               <%= link_to "Sort Least to Most Pages",   controller: "books", action: "index", filter: "number_pages_least_to_most"%><br>
               <%= link_to "Sort Most to Least Reviews", controller: "books", action: "index", filter: "number_reviews_most_to_least"%><br>
-              <%= link_to "Sort Least to Most Reviews", controller: "books", action: "index", filter: "number_reviews_least_to_most"%><br>            </div>
+              <%= link_to "Sort Least to Most Reviews", controller: "books", action: "index", filter: "number_reviews_least_to_most"%><br>
+            </div>
           </li>
         </ul>
       </div>
@@ -75,8 +76,6 @@
     </div>
   </div>
 
-
-
 <% if @books == [] %>
   <h2>No books!</h2>
 <% else %>
@@ -108,10 +107,6 @@
 
 </section>
 <% end %>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
