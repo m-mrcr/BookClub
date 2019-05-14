@@ -35,8 +35,10 @@
         <a href=<%= book_path(book) %> class="btn btn-primary"><%= book.title %></a>
         <section id="alternate-authors">
         <p>
-          <% @alternate_authors.map do |author|%>
-            Co-author: <%= link_to author.name, author_path(author), class:'book-author', id:'author-#{author.id}' %></p>
+          <% book.authors.map do |author| %>
+            <% if @author.name != author.name %>
+              <p>Co-author: <%= link_to author.name, author_path(author), class:'book-author', id:'author-#{author.id}' %></p>
+            <% end %>
           <% end %>
         </section>
         <p>Pages: <%= book.pages %></p>
