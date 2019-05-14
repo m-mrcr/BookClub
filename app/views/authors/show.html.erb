@@ -1,22 +1,63 @@
-<h1><%= @author.name %></h1>
-<h2>Books</h2>
-<% @author.books.each do |book| %>
-    <h3><%= book.title %></h3>
-    <section id="alternate-authors">
-    <p>Other Authors:
-    <% @alternate_authors.map do |author|%>
-      <%= link_to author.name, author_path(author), class:'book-author', id:'author-#{author.id}' %></p>
-    <% end %>
-    </section>
-    <p>Pages: <%= book.pages %></p>
-    <p>Year: <%= book.year %></p>
-    <p><img class="small-image" src=<%= book.cover_url %> alt=<%=book.title%>></p>
-    <% if book.reviews == [] %>
-    <% else %>
-      <p>Top Review:</p>
-      <p>Headline: <%= book.top_review.first[:headline] %></p>
-      <p>Username: <%= link_to book.top_review.first.user.username, user_path(book.top_review.first.user), class:'review-user', id:'user-#{book.top_review.first.user.id}' %></p>
-      <p>Rating: <%= book.top_review.first[:rating] %></p>
-    <% end %>
-<% end %>
-<%= link_to 'Delete Author', author_path(@author.id), method: :delete %>
+<html lang="en">
+  <head>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap 101 Template</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+  </head>
+<body>
+  <nav class="navmaster">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/books">Books Central</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/books/new">Enter New Book <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </nav>
+
+  <h1>Author Page for <%= @author.name %></h1>
+  <%= link_to 'Delete Author', author_path(@author.id), method: :delete %>
+  <section id="books">
+  <% @author.books.each do |book| %>
+    <div class="card" style="width: 18rem;">
+      <img src=<%= book.cover_url %> class="small-image" alt=<%=book.title%>>
+      <div class="card-body">
+        <a href=<%= book_path(book) %> class="btn btn-primary"><%= book.title %></a>
+        <section id="alternate-authors">
+        <p>
+          <% @alternate_authors.map do |author|%>
+            Co-author: <%= link_to author.name, author_path(author), class:'book-author', id:'author-#{author.id}' %></p>
+          <% end %>
+        </section>
+        <p>Pages: <%= book.pages %></p>
+        <p>Year: <%= book.year %></p>
+        <p class="card-text">Average Rating: <%= book.average_rating.to_f.round(2) %></p>
+        <% if book.reviews == [] %>
+        <% else %>
+          <p>Top Review:</p>
+          <p>Headline: <%= book.top_review.first[:headline] %></p>
+          <p>Username: <%= link_to book.top_review.first.user.username, user_path(book.top_review.first.user), class:'review-user', id:'user-#{book.top_review.first.user.id}' %></p>
+          <p>Rating: <%= book.top_review.first[:rating] %></p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</html>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

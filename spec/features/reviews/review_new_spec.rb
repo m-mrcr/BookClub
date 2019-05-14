@@ -24,7 +24,6 @@ describe "user inputs new review" do
       user_1 = User.create(username: "Flipper")
       user_1.reviews.create(book: astronaut, body: "I don't think they'll all fit into one review (for my full review, including my four-year-old's reaction to it", headline: 'I have so many good things to say about this book', rating: 5)
 
-
       visit books_path
 
       click_link(astronaut.title)
@@ -34,12 +33,13 @@ describe "user inputs new review" do
 
       review_headline = "Some Bubkus Review"
       review_username = "littleKitty9000"
-      review_rating = 4
+      review_rating = "4"
       review_body = "I know nothing about this book, I've never read it."
 
       fill_in "review[headline]", with: review_headline
       fill_in "username", with: review_username
-      fill_in "review[rating]", with: review_rating
+
+      page.select review_rating
       fill_in "review[body]", with: review_body
       click_on "Submit Review"
 
