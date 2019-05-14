@@ -5,20 +5,19 @@
   <%= form_for [@book, @review] do |f| %>
     <p>
       <%= f.label :headline %><br />
-      <%= f.text_field :headline %>
+      <%= f.text_field :headline, :required => true %>
     </p>
     <p>
       <%= label_tag :username %><br />
-      <%= text_area_tag :username %>
+      <%= text_area_tag :username, nil, :required => true %>
     </p>
     <p>
       <%= f.label :rating %><br />
       <%= f.select :rating, options_for_select(["1", "2", "3", "4", "5"]) %>
-
     </p>
     <p>
       <%= f.label :body %><br />
-      <%= f.text_area :body, value: "", :cols => "100", :rows => "10" %>
+      <%= f.text_area :body, value: "", :required => true, :cols => "100", :rows => "10" %>
     </p>
     <p>
       <%= f.submit("Submit Review") %>
