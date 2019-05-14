@@ -1,6 +1,6 @@
 <h1><%= @author.name %></h1>
 <h2>Books</h2>
-<% @books.each do |book| %>
+<% @author.books.each do |book| %>
     <h3><%= book.title %></h3>
     <section id="alternate-authors">
     <p>Other Authors:
