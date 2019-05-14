@@ -24,12 +24,12 @@
               Sort Books Order
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <%= link_to "Sort Best to Worst Ratings", controller: "books", action: "index", filter: "rating_best_to_worst"%><br>
-              <%= link_to "Sort Worst to Best Ratings", controller: "books", action: "index", filter: "rating_worst_to_best"%><br>
-              <%= link_to "Sort Most to Least Pages",   controller: "books", action: "index", filter: "number_pages_most_to_least"%><br>
-              <%= link_to "Sort Least to Most Pages",   controller: "books", action: "index", filter: "number_pages_least_to_most"%><br>
-              <%= link_to "Sort Most to Least Reviews", controller: "books", action: "index", filter: "number_reviews_most_to_least"%><br>
-              <%= link_to "Sort Least to Most Reviews", controller: "books", action: "index", filter: "number_reviews_least_to_most"%><br>
+              <a class="nav-link", <%= link_to "Sort Best to Worst Ratings", controller: "books", action: "index", filter: "rating_best_to_worst"%></a><br>
+              <a class="nav-link", <%= link_to "Sort Worst to Best Ratings", controller: "books", action: "index", filter: "rating_worst_to_best"%></a><br>
+              <a class="nav-link", <%= link_to "Sort Most to Least Pages",   controller: "books", action: "index", filter: "number_pages_most_to_least"%></a><br>
+              <a class="nav-link", <%= link_to "Sort Least to Most Pages",   controller: "books", action: "index", filter: "number_pages_least_to_most"%></a><br>
+              <a class="nav-link", <%= link_to "Sort Most to Least Reviews", controller: "books", action: "index", filter: "number_reviews_most_to_least"%></a><br>
+              <a class="nav-link", <%= link_to "Sort Least to Most Reviews", controller: "books", action: "index", filter: "number_reviews_least_to_most"%></a><br>
             </div>
           </li>
         </ul>
