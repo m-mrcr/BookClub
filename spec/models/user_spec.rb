@@ -30,7 +30,7 @@ RSpec.describe User, type: :model do
       user_1 = User.create(username: "Flipper")
       user_1.reviews.create(book: astronaut, body: "I don't know!", headline: 'review headline 1', rating: 5)
 
-      expect(user_1.review_count).to eq(1)
+      expect(user_1.reviews.count).to eq(1)
     end
 
     it "finds username from a user object" do
