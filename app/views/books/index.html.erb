@@ -82,30 +82,26 @@
 <% else %>
 <section id="books">
   <% @books.each do |book| %>
-  <ul>
-  <li>
-  <div class="card" style="width: 18rem;">
-    <img src=<%= book.cover_url %> class="card-img-top" alt=<%=book.title%>>
-    <div class="card-body">
-      <a href=<%= book_path(book) %> class="btn btn-primary"><%= book.title %></a>
-
-      <% book.authors.each do |author| %>
-      <section id="authors">
-        <%= link_to author.name, author_path(author), class:'book-author', id:'author-#{author.id}' %>
-      </section>
-      <% end %>
-
-      <p class="card-text">Average Rating: <%= book.average_rating.to_f.round(2) %></p>
-      <p>Reviews: <%= book.total_reviews %></p>
-      <p>Page Count: <%= book.pages %></p>
-      <p>Published: <%= book.year %></p>
-    </div>
-  </div>
-  </li>
-
-</ul>
+    <ul>
+      <li>
+      <div class="card" style="width: 18rem;">
+        <img src=<%= book.cover_url %> class="card-img-top" alt=<%=book.title%>>
+        <div class="card-body">
+          <a href=<%= book_path(book) %> class="btn btn-primary"><%= book.title %></a>
+          <% book.authors.each do |author| %>
+            <section id="authors">
+              <%= link_to author.name, author_path(author), class:'book-author', id:'author-#{author.id}' %>
+            </section>
+          <% end %>
+          <p class="card-text">Average Rating: <%= book.average_rating.to_f.round(2) %></p>
+          <p>Reviews: <%= book.total_reviews %></p>
+          <p>Page Count: <%= book.pages %></p>
+          <p>Published: <%= book.year %></p>
+        </div>
+      </div>
+      </li>
+    </ul>
   <% end %>
-
 </section>
 <% end %>
 
