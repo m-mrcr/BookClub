@@ -15,7 +15,9 @@ describe "user sees one book" do
 
       visit books_path
 
-      click_link astronaut.title
+      within '#books' do
+        click_link astronaut.title
+      end
 
       expect(current_path).to eq(book_path(astronaut.id))
 
@@ -52,7 +54,10 @@ describe "user sees one book" do
       user_4.reviews.create(book: astronaut, body: "body 4", headline: "headline 4", rating: 3)
 
       visit books_path
-      click_link astronaut.title
+
+      within "#books" do
+        click_link astronaut.title
+      end
 
       within '#top-three-reviews' do
         expect(page).to have_content(user_3.reviews.first.headline)
@@ -103,7 +108,9 @@ describe "user sees one book" do
 
       visit books_path
 
-      click_link(astronaut.title)
+      within "#books" do
+        click_link(astronaut.title)
+      end
 
       expect(page).to have_link(astronaut.authors[0].name)
     end
@@ -117,7 +124,10 @@ describe "user sees one book" do
       user_2.reviews.create(book: astronaut, body: "reaction to it", headline: "Yikes", rating: 4)
 
       visit books_path
-      click_link(astronaut.title)
+
+      within "#books" do
+        click_link(astronaut.title)
+      end
 
       expect(page).to have_content("Delete Book")
     end
@@ -131,7 +141,11 @@ describe "user sees one book" do
       user_2.reviews.create(book: astronaut, body: "reaction to it", headline: "Yikes", rating: 4)
 
       visit books_path
-      click_link(astronaut.title)
+
+      within "#books" do
+        click_link(astronaut.title)
+      end
+
       click_link("Delete Book")
 
       expect(current_path).to eq(books_path)
@@ -146,7 +160,11 @@ describe "user sees one book" do
       user_2.reviews.create(book: astronaut, body: "reaction to it", headline: "Yikes", rating: 4)
 
       visit books_path
-      click_link(astronaut.title)
+      
+      within "#books" do
+        click_link(astronaut.title)
+      end
+
       click_link("Delete Book")
 
       expect(current_path).to eq(books_path)

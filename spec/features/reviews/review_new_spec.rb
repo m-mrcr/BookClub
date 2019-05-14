@@ -10,7 +10,9 @@ describe "user inputs new review" do
 
       visit books_path
 
-      click_link(astronaut.title)
+      within "#books" do
+        click_link(astronaut.title)
+      end
 
       expect(page).to have_link("Write Review")
     end
@@ -26,7 +28,10 @@ describe "user inputs new review" do
 
       visit books_path
 
-      click_link(astronaut.title)
+      within "#books" do
+        click_link(astronaut.title)
+      end
+      
       click_link("Write Review")
 
       expect(current_path).to eq(new_book_review_path(astronaut.id))

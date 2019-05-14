@@ -43,7 +43,7 @@
   <li>
     <section id='review-<%= review.id %>'
       <img class="small-image" src=<%= review.book.cover_url %> alt=<%=review.book.title%>>
-      <p>Book Title: <%= review.book.title %></p>
+      <h2><a href=<%= book_path(review.book) %>><%= review.book.title %></a></h2>
       <p>Headline: <%= review.headline %></p>
       <p>Body: <%= review.body %></p>
       <p>Rating: <%= review.rating %></p>

@@ -39,6 +39,9 @@
   Year Published: <%= @book.year %><br>
   <br>
 
+  <% if @book.reviews == [] %>
+    <h2>No Reviews yet</h2>
+  <% else %>
   <div class="container">
     <div class="row">
       <div class="col-md-6">
@@ -80,6 +83,7 @@
         <% end %>
       </section>
       <br>
+    <% end %>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

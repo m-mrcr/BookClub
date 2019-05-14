@@ -46,8 +46,8 @@
           <br>
           <h2>Best Books</h2>
           <% @three_best.each do |book| %>
-            <%= book.title %>,
-            <%= book.average_rating.to_f.round(2) %> stars<br>
+          <a href=<%= book_path(book) %>><%= book.title %></a> |
+          <%= book.average_rating.to_f.round(2) %> stars<br>
           <% end %>
         </section>
       </div>
@@ -58,8 +58,8 @@
           <br>
           <h2>Worst Books</h2>
           <% @three_worst.each do |book| %>
-            <%= book.title %>,
-            <%= book.average_rating.to_f.round(2) %> stars<br>
+          <a href=<%= book_path(book) %>><%= book.title %></a> |
+           <%= book.average_rating.to_f.round(2) %> stars<br>
           <% end %>
         </section>
       </div>
@@ -70,7 +70,7 @@
           <br>
           <h2>Three Most Active Users</h2>
           <% @three_top_users.each do |user| %>
-            <%= user.username %><br>
+          <%= link_to user.username, user_path(user) %><br>
           <% end %>
         </section>
       </div>

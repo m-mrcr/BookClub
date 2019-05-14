@@ -10,7 +10,10 @@ describe "user clicks reviewer on any book review" do
       user_1.reviews.create(book: astronaut, body: "I don't think they'll all fit into one review (for my full review, including my four-year-old's reaction to it", headline: 'I have so many good things to say about this book', rating: 5)
 
       visit books_path
-      click_link(astronaut.title)
+
+      within "#books" do
+        click_link(astronaut.title)
+      end
 
       within '#standard-reviews' do
         click_link(astronaut.reviews[0].user.username)
@@ -33,7 +36,10 @@ describe "user clicks reviewer on any book review" do
       user_2.reviews.create(book: css, body: "this is the body of a review", headline: 'this is the headline of a review', rating: 1)
 
       visit books_path
-      click_link(astronaut.title)
+
+      within "#books" do
+        click_link(astronaut.title)
+      end
 
       within '#standard-reviews' do
         click_link(astronaut.reviews[0].user.username)
@@ -61,7 +67,10 @@ describe "user clicks reviewer on any book review" do
       user_1.reviews.create(book: css, body: "this is a review", headline: 'review headline 2', rating: 1)
 
       visit books_path
-      click_link(astronaut.title)
+
+      within "#books" do
+        click_link(astronaut.title)
+      end
 
       within '#standard-reviews' do
         click_link(astronaut.reviews[0].user.username)
@@ -86,7 +95,9 @@ describe "user clicks reviewer on any book review" do
       user_1.reviews.create(book: css, body: "this is a review", headline: 'review headline 2', rating: 1)
 
       visit books_path
-      click_link(astronaut.title)
+      within "#books" do
+        click_link(astronaut.title)
+      end
 
       within '#standard-reviews' do
         click_link(astronaut.reviews[0].user.username)
@@ -110,7 +121,10 @@ describe "user clicks reviewer on any book review" do
       review_2 = user_1.reviews.create(book: css, body: "this is the body of a review", headline: 'this is the headline of a review', rating: 1)
 
       visit books_path
-      click_link(astronaut.title)
+
+      within "#books" do
+        click_link(astronaut.title)
+      end
 
       within '#standard-reviews' do
         click_link(astronaut.reviews[0].user.username)
