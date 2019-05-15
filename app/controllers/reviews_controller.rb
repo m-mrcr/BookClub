@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
     review = Review.new(review_params)
     username = user_params[:username].downcase.strip.titleize
     if User.usernames.include?(username) || !params[:review][:rating].to_i.between?(1,5)
-      redirect_to new_book_review_path
+      redirect_to new_book_review_path(@book.id)
     else
       review_user = User.find_or_create_by!(username: username)
       review_user.reviews << review
