@@ -85,14 +85,7 @@ describe "user inputs new review" do
       fill_in "review[body]", with: review_body
       click_on "Submit Review"
 
-      # expect(page).to have_content(review_headline)
       expect(current_path).to eq(new_book_review_path(astronaut.id))
-      # expect(page).to_not have_content(css.title)
-      # expect(current_path).to_not eq(books_path + "/#{css.id}")
-      #
-      # expect(page).to have_content("Littlekitty9000")
-
-
     end
   end
 end
