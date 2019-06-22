@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
 
 ############## ORIGINAL ROUTES ##############
   # resources :books, only: [:index, :show, :new, :create, :destroy] do
@@ -13,10 +11,7 @@ Rails.application.routes.draw do
   #
   # get '/', to: 'welcome#index'
 
-
-
-  ############## WITHOUT USING RESOURCES ##############
-
+############## CHANGED ROUTES ##############
   post   '/books/:book_id/reviews', to: 'reviews#create', as: 'book_reviews'
   get    '/books/:book_id/reviews/new', to: 'reviews#new', as: 'new_book_review'
   delete '/books/:book_id/reviews/:id', to: 'reviews#destroy', as: 'book_review'
@@ -33,6 +28,4 @@ Rails.application.routes.draw do
   get '/users/:id', to: 'users#show', as: 'user'
 
   get '/', to: 'welcome#index'
-
-
 end
